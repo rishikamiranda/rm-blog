@@ -3,27 +3,43 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog');
-// Sort chronologically descending and isolate the top 5
+// Filter and isolate the 5 most recent posts chronologically
 const recentPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 5);
 ---
 
-<BaseLayout title="Home | Alex">
-  <section class="mb-16">
-    <h1 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl mb-4">
-      Hey, I'm Alex.
-    </h1>
-    <p class="text-stone-600 leading-relaxed text-base sm:text-lg">
-      I am a digital craftsman focused on minimal architectures and fast web performance. 
-      This is my quiet corner of the internet where I write down my thoughts on building clean code systems.
-    </p>
+<BaseLayout title="Rishika Miranda | Architect & Interior Designer">
+  
+  <section class="mb-16 space-y-6">
+    <div class="space-y-2">
+      <h1 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+        Rishika Miranda
+      </h1>
+      <p class="text-sm font-medium text-stone-500 tracking-wide uppercase">
+        Founder, Kyrah Design Studio &bull; Bengaluru
+      </p>
+    </div>
+    
+    <div class="text-stone-600 leading-relaxed space-y-4 text-base sm:text-[17px]">
+      <p>
+        I am an architect and interior designer focused on creating thoughtfully crafted, layered, and timeless residential spaces. Over the past five years, I’ve built Kyrah Design Studio from the ground up—shaping not just physical structures, but an intentional approach to craftsmanship and collaboration.
+      </p>
+      <p>
+        My practice sits firmly at the intersection of design vision and real-world execution. I believe great spaces must be both inspiring and buildable, a philosophy forged through deep, everyday involvement on active construction sites alongside craftsmen, contractors, and builders.
+      </p>
+      <p>
+        Many of my projects draw extensively from traditional Indian craftsmanship and structural material richness, adapting historical visual languages to seamlessly align with contemporary living environments.
+      </p>
+    </div>
   </section>
 
-  <section>
+  <section class="pt-8 border-t border-stone-200">
     <div class="flex justify-between items-baseline mb-8">
       <h2 class="text-lg font-semibold tracking-tight text-stone-900">Recent Writing</h2>
-      <a href="/blog" class="text-xs font-medium text-stone-500 hover:text-stone-900 transition underline decoration-stone-300 underline-offset-4">View all posts</a>
+      <a href="/blog" class="text-xs font-medium text-stone-500 hover:text-stone-900 transition underline underline-offset-4 decoration-stone-300">
+        All Articles
+      </a>
     </div>
 
     <div class="space-y-10">
@@ -34,17 +50,25 @@ const recentPosts = allPosts
           <article class="group relative flex flex-col items-start">
             <h3 class="text-base font-semibold tracking-tight text-stone-900 group-hover:text-stone-600 transition">
               <a href={`/blog/${post.data.slug}`}>
-                {/* Micro-interaction backdrop glow for mouse hover */}
                 <span class="absolute -inset-x-4 -inset-y-3 z-0 scale-95 bg-stone-100 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 rounded-xl" />
                 <span class="relative z-10">{post.data.title}</span>
               </a>
             </h3>
-            <time class="relative z-10 order-first mb-1 flex items-center text-xs text-stone-400 font-medium">
+            <time datetime={post.data.pubDate.toISOString()} class="relative z-10 order-first mb-1 flex items-center text-xs text-stone-400 font-medium">
               {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
             </time>
             <p class="relative z-10 mt-2 text-sm text-stone-600 line-clamp-2 leading-relaxed">
               {post.data.description}
             </p>
+            {post.data.tags && (
+              <div class="relative z-10 mt-3 flex gap-2 overflow-hidden">
+                {post.data.tags.slice(0, 3).map((tag) => (
+                  <span class="inline-flex items-center text-[11px] font-medium text-stone-400">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </article>
         ))
       )}

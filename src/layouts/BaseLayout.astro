@@ -10,13 +10,12 @@ interface Props {
 
 const { 
   title, 
-  description = "A minimal reading space dedicated to clean code and architecture.", 
-  ogImage = "/og-fallback.png", // Place a default social preview card in your public/ folder
+  description = "Founder, Kyrah Design Studio | Architect & Interior Designer crafting thoughtful luxury homes in Bengaluru.", 
+  ogImage = "/og-fallback.png",
   articleDate 
 } = Astro.props;
 
-// Automatically construct clean canonical links
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://yourdomain.com');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://rishikamiranda.com');
 ---
 <html lang="en" class="scroll-smooth">
   <head>
@@ -43,21 +42,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://yourdoma
   </head>
   
   <body class="bg-stone-50 text-stone-900 antialiased font-sans selection:bg-stone-200 min-h-screen flex flex-col">
-    <header class="max-w-2xl mx-auto w-full px-6 py-8 flex justify-between items-center">
-      <a href="/" class="font-medium tracking-tight hover:text-stone-600 transition">home</a>
-      <nav class="flex gap-6 text-sm font-medium text-stone-600">
+    
+    <header class="max-w-2xl mx-auto w-full px-6 py-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <a href="/" class="font-bold text-lg tracking-tight text-stone-900 hover:text-stone-600 transition">
+        Rishika Miranda
+      </a>
+      <nav class="flex gap-6 text-sm font-medium text-stone-500">
         <a href="/blog" class="hover:text-stone-900 transition">blog</a>
         <a href="/about" class="hover:text-stone-900 transition">about</a>
         <a href="/contact" class="hover:text-stone-900 transition">contact</a>
       </nav>
     </header>
     
-    <main class="max-w-2xl mx-auto w-full px-6 py-12 flex-1">
+    <main class="max-w-2xl mx-auto w-full px-6 py-6 flex-1">
       <slot />
     </main>
 
     <footer class="max-w-2xl mx-auto w-full px-6 py-12 border-t border-stone-200 text-xs text-stone-400 text-center">
-      &copy; {new Date().getFullYear()} Alex. All rights reserved.
+      &copy; {new Date().getFullYear()} Rishika Miranda. Built with Astro & Tailwind CSS.
     </footer>
   </body>
 </html>

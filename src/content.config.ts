@@ -1,12 +1,16 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 const blog = defineCollection({
-  type: 'content',
+  // Modern Content Layer loader targeting your local markdown files
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  
   schema: z.object({
     title: z.string(),
-    slug: z.string(),
-    pubDate: z.date(),
-    description: z.string(),
+    slug: z.string(), // Your explicit custom SEO slug string
+    pubDate: z.coerce.date(), // Using coerce guarantees string dates from Markdown convert safely to JS Date objects
+    description: z.string().max(160), // Hardened for SEO layout limits
     author: z.string(),
     tags: z.array(z.string()),
   }),
