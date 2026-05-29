@@ -1,7 +1,5 @@
 ---
 import '../styles/global.css';
-import { Image } from 'astro:assets';
-import logoAsset from '../assets/logo.svg';
 
 interface Props {
   title: string;
@@ -36,16 +34,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://rishikam
     <div class="relative z-10 flex flex-col min-h-screen w-full">
       
       <header class="max-w-4xl mx-auto w-full px-6 sm:px-12 pt-12 pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <a href="/" class="transition-opacity duration-200 hover:opacity-70 flex items-center" aria-label="Rishika Miranda Home">
-          <Image 
-            src={logoAsset} 
-            alt="Rishika Miranda Logo" 
-            height={32}
-            class="h-8 w-auto object-contain"
-            loading="eager"
-          />
+        <a 
+          href="/" 
+          class="font-display font-extrabold text-xl tracking-tighter text-stone-900 hover:text-stone-600 transition-colors duration-200" 
+          aria-label="Rishika Miranda Home"
+        >
+          RishikaMiranda
         </a>
+        
         <nav class="flex flex-wrap gap-x-6 gap-y-1 text-sm font-medium text-stone-500">
+          <a href="/blog" class="hover:text-stone-900 transition">blog</a>
           <a href="/category/projects" class="hover:text-stone-900 transition">projects</a>
           <a href="/category/events" class="hover:text-stone-900 transition">events</a>
           <a href="/category/resources" class="hover:text-stone-900 transition">resources</a>
