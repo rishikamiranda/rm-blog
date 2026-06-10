@@ -1,86 +1,242 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+// 1. Import the optimized Image component
+import { Image } from 'astro:assets';
+
+// 2. Import the physical image file from your assets folder
+import profileImage from '../assets/rishikamiranda.png';
+
+import grandPiano from '../assets/grand-piano.png';
+import armchairBold from '../assets/armchair-bold.png';
+import house from '../assets/house.png';
+import mic from '../assets/mic.png';
+import plantSolid from '../assets/plant-solid.png';
 
 const allPosts = await getCollection('blog');
-// Filter and isolate the 5 most recent posts chronologically
 const recentPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 5);
+  .slice(0, 3);
+
+const marqueeIcons = [grandPiano, armchairBold, house, mic, plantSolid];
 ---
 
-<BaseLayout title="Rishika Miranda | Architect & Interior Designer">
+<BaseLayout title="Rishika Miranda | Spatial Design, Architecture & Curation">
   
-  <section class="mb-16 space-y-6">
-  <div class="space-y-2">
-    <h1 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
-      Rishika Miranda
-    </h1>
-    <p class="text-sm font-medium text-stone-500 tracking-wide uppercase">
-      Co-founder, Kyrah Design Studio &bull; Bengaluru
-    </p>
-  </div>
-
-  <div class="text-stone-600 leading-relaxed space-y-4 text-base sm:text-[17px]">
-    <p>
-      I’m a Bangalore-based architect and creative lead working across architecture, interiors, storytelling and experiential design. 
-      As a co-founder of Kyrah Design Studio, I lead architectural and interior design projects from concept to execution while also shaping the studio’s creative direction across media, client experience and collaborative processes with teams and artisans. 
-      My work focuses on creating highly customised spaces that feel thoughtful, layered and deeply personal to the people using them.
-    </p>
-    <p>
-      I’m deeply drawn to architectural history, craftsmanship traditions, material culture, art, music and the way creativity moves across disciplines. 
-      Much of my approach to design comes from observing how people experience spaces emotionally through memory, ritual, texture, light, sound and atmosphere, with a strong focus on clarity of thought and craftsmanship.
-    </p>
-    <p>
-      Alongside my design practice, I enjoy curating intimate creative experiences centred around design, culture, food, music and conversation. 
-      I also enjoy designing furniture and products that respond intuitively to the behaviours and rituals of the end user.
-    </p>
-    <div class="pt-2">
-      <a href="/about" class="inline-block text-stone-700 font-medium underline underline-offset-4 hover:text-stone-900 transition">
-        Know more about my journey →
-      </a>
-    </div>
-  </div>
-</section>
-
-  <section class="pt-8 border-t border-stone-200">
-    <div class="flex justify-between items-baseline mb-8">
-      <h2 class="text-lg font-semibold tracking-tight text-stone-900">Recent Writing</h2>
-      <a href="/blog" class="text-xs font-medium text-stone-500 hover:text-stone-900 transition underline underline-offset-4 decoration-stone-300">
-        All Articles
-      </a>
-    </div>
-
-    <div class="space-y-10">
-      {recentPosts.length === 0 ? (
-        <p class="text-sm text-stone-400 italic">No articles published yet.</p>
-      ) : (
-        recentPosts.map((post) => (
-          <article class="group relative flex flex-col items-start">
-            <h3 class="text-base font-semibold tracking-tight text-stone-900 group-hover:text-stone-600 transition">
-              <a href={`/blog/${post.data.slug}`}>
-                <span class="absolute -inset-x-4 -inset-y-3 z-0 scale-95 bg-stone-100 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 rounded-xl" />
-                <span class="relative z-10">{post.data.title}</span>
-              </a>
-            </h3>
-            <time datetime={post.data.pubDate.toISOString()} class="relative z-10 order-first mb-1 flex items-center text-xs text-stone-400 font-medium">
-              {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-            </time>
-            <p class="relative z-10 mt-2 text-sm text-stone-600 line-clamp-2 leading-relaxed">
-              {post.data.description}
-            </p>
-            {post.data.tags && (
-              <div class="relative z-10 mt-3 flex gap-2 overflow-hidden">
-                {post.data.tags.slice(0, 3).map((tag) => (
-                  <span class="inline-flex items-center text-[11px] font-medium text-stone-400">
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            )}
-          </article>
-        ))
-      )}
+  <!-- HERO SECTION - Full edge-to-edge impact layout -->
+  <section class="px-8 md:px-16 pt-20 pb-16 md:pt-32 md:pb-24 w-full">
+    <div class="max-w-6xl">
+      <span class="step-line w-12 mb-8"></span>
+      <p class="text-xs tracking-widest uppercase text-muted mb-6 font-bold">Architecture & Experience Curation</p>
+      
+      <h1 class="font-display text-5xl sm:text-7xl md:text-8xl leading-none font-medium mb-10 max-w-4xl text-ink">
+        Chase your<br/>
+        <em>dreams,</em><br/>
+        together.
+      </h1>
     </div>
   </section>
+
+  <!-- MARQUEE BAND - Full bleed edge-to-edge -->
+  <div class="py-6 overflow-hidden w-full mb-12">
+    <div class="marquee-inner items-center gap-0">
+      {Array(6).fill(marqueeIcons).flat().map((icon) => (
+        <div class="flex items-center flex-shrink-0 mx-12 sm:mx-16">
+          <div 
+            class="w-8 h-8 sm:w-9 sm:h-9 marquee-icon-mask cursor-pointer"
+            style={`
+              mask: url(${icon.src}) no-repeat center / contain;
+              -webkit-mask: url(${icon.src}) no-repeat center / contain;
+            `}
+            role="img"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- 
+    CRUCIAL: ALL CONTENT SECTIONS BELOW ARE NOW CONTROLLED BY A 
+    NATIVE 'max-w-5xl mx-auto px-8' ARCHITECTURAL CONTAINER FRAME
+  -->
+
+  <!-- ABOUT SECTION -->
+  <section class="max-w-6xl mx-auto px-8 py-16 md:py-24 w-full">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+      
+      <div class="space-y-6 text-sm text-ink leading-relaxed font-mono">
+        <span class="step-line w-8 mb-6"></span>
+        
+        <p>
+          I’m a Bangalore-based architect and creative lead working across architecture, interiors, storytelling and experiential design. 
+          As a co-founder of Kyrah Design Studio, I lead architectural and interior design projects from concept to execution.
+        </p>
+        <p>
+          Much of my approach to design comes from observing how people experience spaces emotionally through memory, ritual, texture, light, sound and atmosphere, with a strong focus on clarity of thought and craftsmanship.
+        </p>
+        
+        <div class="pt-6">
+          <a href="/about" class="text-xs tracking-widest uppercase text-orange border-b border-orange pb-1 hover:text-ink hover:border-ink transition-colors duration-300 font-bold">
+            Learn More About My Journey →
+          </a>
+        </div>
+      </div>
+
+      <div class="w-full">
+        <div class="image-reveal-half w-full aspect-[3/4] overflow-hidden bg-warm border border-warm rounded-sm">
+          <img
+            src={profileImage.src}
+            alt="Rishika Miranda "
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <p class="text-[10px] text-muted mt-3 tracking-widest uppercase font-mono">
+          Hover frame to reveal full space &rarr;
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HIGHLIGHTS STEP BREAK -->
+  <div class="max-w-6xl mx-auto px-8 flex items-center gap-4 py-2 w-full">
+
+  </div>
+
+  <!-- HOW I CAN HELP SECTION -->
+  <section class="max-w-6xl mx-auto px-8 py-16 md:py-24 w-full">
+    <div class="flex items-start justify-between mb-12 flex-col md:flex-row gap-6">
+      <div>
+        <span class="step-line w-8 mb-6"></span>
+        <p class="text-xs tracking-widest uppercase text-muted font-bold">How I Can Help</p>
+      </div>
+      <h2 class="font-display text-3xl md:text-5xl font-medium italic max-w-md text-ink leading-tight">
+        Your next step starts here.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-warm border border-warm">
+      <div class="bg-paper p-8 group transition-colors duration-300 hover:bg-white/50">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="step-line w-10 group-hover:w-16 transition-all duration-300"></span>
+          <span class="text-xs tracking-widest uppercase text-muted font-bold">01</span>
+        </div>
+        <h3 class="font-display text-xl font-medium text-ink mb-4">Spatial Architecture</h3>
+        <p class="text-xs leading-relaxed text-muted">Comprehensive architectural and interior frameworks developed from deep site context, artisanal heritage, and spatial clarity.</p>
+      </div>
+      
+      <div class="bg-paper p-8 group transition-colors duration-300 hover:bg-white/50">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="step-line w-10 group-hover:w-16 transition-all duration-300"></span>
+          <span class="text-xs tracking-widest uppercase text-muted font-bold">02</span>
+        </div>
+        <h3 class="font-display text-xl font-medium text-ink mb-4">Furniture & Design</h3>
+        <p class="text-xs leading-relaxed text-muted">Intuitively crafted physical items engineered to complement the physical behaviors, textures, and daily spatial rituals of the end user.</p>
+      </div>
+      
+      <div class="bg-paper p-8 group transition-colors duration-300 hover:bg-white/50">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="step-line w-10 group-hover:w-16 transition-all duration-300"></span>
+          <span class="text-xs tracking-widest uppercase text-muted font-bold">03</span>
+        </div>
+        <h3 class="font-display text-xl font-medium text-ink mb-4">Experience Curation</h3>
+        <p class="text-xs leading-relaxed text-muted">Designing premium, cross-disciplinary events that weave together layout design, material culture, food, music, and raw community conversations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP DIVIDER -->
+  <div class="max-w-6xl mx-auto px-8 flex items-center gap-3 py-2 w-full">
+
+  </div>
+
+  <!-- JOURNAL WRITING GRID -->
+  <section class="max-w-6xl mx-auto px-8 py-16 md:py-24 w-full">
+    <div class="flex items-end justify-between mb-12">
+      <div>
+        <span class="step-line w-8 mb-6"></span>
+        <p class="text-xs tracking-widest uppercase text-muted mb-2 font-bold">Posts</p>
+        <h2 class="font-display text-3xl md:text-4xl font-medium italic text-ink">Recent Writings</h2>
+      </div>
+      <a href="/blog" class="text-xs tracking-widest uppercase text-muted hover:text-orange transition-colors duration-300 border-b border-muted pb-1 font-bold">
+        All Posts →
+      </a>
+    </div>
+
+    {recentPosts.length === 0 ? (
+      <p class="text-sm text-muted italic">No journal articles have been deployed to the content tier yet.</p>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="md:col-span-2 group cursor-pointer relative">
+          <a href={`/blog/${recentPosts[0].data.slug}`} class="block">
+            <div class="overflow-hidden aspect-[16/9] mb-5 rounded-sm border border-warm bg-warm">
+              <img
+                src={typeof recentPosts[0].data.heroImage === 'object' ? recentPosts[0].data.heroImage.src : (recentPosts[0].data.heroImage || "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=900&q=80")}
+                alt={recentPosts[0].data.title}
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-101"
+              />
+            </div>
+            <div class="flex items-center gap-4 mb-3">
+              <span class="step-line w-6"></span>
+              <span class="text-xs tracking-widest uppercase text-muted font-bold">
+                {recentPosts[0].data.categories?.[0] || "Reflections"} &bull; Featured Entry
+              </span>
+            </div>
+            <h3 class="font-display text-2xl md:text-3xl font-medium group-hover:italic transition-all duration-300 mb-2 text-ink">
+              {recentPosts[0].data.title}
+            </h3>
+            <p class="text-xs text-muted leading-relaxed max-w-xl">{recentPosts[0].data.description}</p>
+          </a>
+        </div>
+
+        <div class="flex flex-col gap-8">
+          {recentPosts.slice(1, 3).map((post) => (
+            <div class="group cursor-pointer relative">
+              <a href={`/blog/${post.data.slug}`} class="block">
+                <div class="overflow-hidden aspect-[4/3] mb-4 rounded-sm border border-warm bg-warm">
+                  <img
+                    src={typeof post.data.heroImage === 'object' ? post.data.heroImage.src : (post.data.heroImage || "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=80")}
+                    alt={post.data.title}
+                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-101"
+                  />
+                </div>
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="step-line w-4"></span>
+                  <span class="text-xs tracking-widest uppercase text-muted font-bold">
+                    {post.data.categories?.[0] || "Writing"}
+                  </span>
+                </div>
+                <h3 class="font-display text-lg font-medium group-hover:italic transition-all duration-300 text-ink leading-snug">
+                  {post.data.title}
+                </h3>
+              </a>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    )}
+  </section>
+
+  <!-- CTA COLLABORATION BLOCK -->
+  <section class="max-w-6xl mx-auto px-8 py-20 md:py-28 w-full">
+    <div class="max-w-2xl">
+      <p class="text-xs tracking-widest uppercase text-muted mb-6 font-bold">Collaborations</p>
+      <h2 class="font-display text-4xl md:text-6xl font-medium leading-none mb-10 text-ink">
+        Ready to take<br/>
+        <em>the leap?</em>
+      </h2>
+      <p class="text-xs text-muted leading-relaxed mb-12 max-w-sm">
+        Whether shaping a custom residential commission, architectural detailing, or exploring experimental media, let's build something with enduring context.
+      </p>
+      <div class="flex items-center gap-6 flex-wrap">
+        <a href="mailto:hello@rishikamiranda.com" class="text-xs tracking-widest uppercase bg-orange text-paper px-8 py-4 hover:bg-ink transition-colors duration-300 font-bold rounded-xs">
+          Book a Session
+        </a>
+        <span class="step-line w-12"></span>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
