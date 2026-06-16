@@ -10,8 +10,6 @@ heroImage: "../../assets/blog/test.jpg"
 has_gallery: false
 ---
 
-# What Fontainhas Taught Me About Goa
-
 When most people think of Goa, they think of beaches.
 
 I used to as well.

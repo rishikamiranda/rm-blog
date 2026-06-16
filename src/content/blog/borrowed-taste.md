@@ -10,7 +10,6 @@ heroImage: "../../assets/blog/test.jpg"
 has_gallery: false
 ---
 
-# Borrowed Taste
 
 About ten years ago, I suggested Kota stone flooring for a project.
 

@@ -10,8 +10,6 @@ heroImage: "../../assets/blog/test.jpg"
 has_gallery: false
 ---
 
-# What I Took Back From the Kochi Biennale
-
 One of my favourite moments from the Kochi Biennale had very little to do with the art itself.
 
 I was walking through one of the exhibition spaces when I noticed a group of children moving through the rooms ahead of me.

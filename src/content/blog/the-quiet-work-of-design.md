@@ -10,7 +10,6 @@ heroImage: "../../assets/blog/test.jpg"
 has_gallery: false
 ---
 
-# The Quiet Work of Design
 
 My design projects have a habit of following me around.
 

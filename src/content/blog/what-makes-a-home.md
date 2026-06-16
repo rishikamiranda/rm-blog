@@ -10,8 +10,6 @@ heroImage: "../../assets/blog/test.jpg"
 has_gallery: false
 ---
 
-# What Makes a Home?
-
 As someone who designs homes for a living, I spend a great deal of time thinking about what makes one.
 
 The question usually begins with practical considerations. Rooms. Materials. Furniture. Storage. Light. The countless decisions that eventually come together to create a place someone will live in.

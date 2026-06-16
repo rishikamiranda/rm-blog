@@ -10,7 +10,6 @@ heroImage: "../../assets/blog/test.jpg"
 has_gallery: false
 ---
 
-# The Things We Make Beautiful
 
 Every morning, I get ready for work and reach for a pair of earrings.
 
