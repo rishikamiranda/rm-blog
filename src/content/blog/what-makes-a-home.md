@@ -1,0 +1,77 @@
+---
+title: "What Makes a Home?"
+slug: "what-makes-a-home"
+pubDate: 2026-06-16
+author: "Rishika Miranda"
+description: "A reflection on the Banjaras, Bangalore, memory, and the objects, rituals, and experiences that quietly shape our idea of home."
+categories: ["reflections"]
+tags: ["banjara-community", "home-design", "belonging", "architecture"]
+heroImage: "../../assets/blog/test.jpg"
+has_gallery: false
+---
+
+# What Makes a Home?
+
+As someone who designs homes for a living, I spend a great deal of time thinking about what makes one.
+
+The question usually begins with practical considerations. Rooms. Materials. Furniture. Storage. Light. The countless decisions that eventually come together to create a place someone will live in.
+
+Yet the more homes I design, the less convinced I become that home is entirely defined by a building.
+
+---
+
+## Lessons From the Banjaras
+
+That thought resurfaced recently while reading about the Banjaras, a historically nomadic community whose lives were shaped by movement rather than permanence.
+
+For most of us, home is closely tied to a place. An address. A neighbourhood. A building we return to.
+
+The Banjaras offer a different perspective.
+
+If your life is defined by movement, then home cannot depend entirely on staying in one place.  
+**It has to travel with you.**
+
+> *Home has a remarkable ability to travel with us.*
+
+The idea has stayed with me because so much of what people cherish about home seems to work the same way.
+
+*   A collection gathered over decades.
+*   Photographs carried from one house to another.
+*   Objects that somehow survive every move.
+*   The corner of a living room that becomes someone's favourite place to read.
+*   The sound of laughter and conversation gathering around a kitchen counter long after the meal itself is over.
+
+These are often the things people speak about most when describing a home they love.
+
+Not the dimensions of the room.  
+Not the square footage.  
+**Not even the architecture itself.**
+
+---
+
+## The Bangalore of Memory
+
+I think about the Bangalore I grew up in. Tree-lined boulevards that seemed endless as a child. Evening walks with my parents, my feet unconsciously counting the pavers beneath me as we walked. Routes that became so familiar they now feel like muscle memory, capable of leading me back to childhood haunts without much effort at all.
+
+> *Some places become part of us long before we understand why.*
+
+None of those memories belong to a building. Yet they shape my understanding of home as much as any house ever could.
+
+Perhaps that's why the Banjaras continue to feel relevant. Not because they offer an alternative definition of home, but because they remind us that **belonging is often built from things far less permanent than walls.**
+
+Memories.  
+Rituals.  
+People.  
+Experiences.  
+
+*Belonging isn't always tied to a place.*
+
+The things we carry with us long after we've left a place behind.
+
+---
+
+### Further Reading
+
+*   **[The Things We Make Beautiful](/blog/the-things-we-make-beautiful)** — Exploring the intrinsic human drive to imbue everyday functional tools with fine artistic craftsmanship.
+*   **[Borrowed Taste](/blog/borrowed-taste)** — A critical reflection on material choices, cultural heritage, and how familiarity masks value.
+*   **[What Fontainhas Taught Me About Goa](/blog/what-fontainhas-taught-me-about-goa)** — Discovering how intense material constraints generate timeless vernacular design architecture.

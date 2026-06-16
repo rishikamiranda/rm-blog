@@ -1,0 +1,65 @@
+---
+title: "The Quiet Work of Design"
+slug: "the-quiet-work-of-design"
+pubDate: 2026-06-16
+author: "Rishika Miranda"
+description: "A visit to NGMA becomes a reflection on flooring, longevity, and the quieter design decisions that shape our experience of a space."
+categories: ["reflections"]
+tags: ["ngma-bangalore", "architecture", "flooring-design", "design-thinking"]
+heroImage: "../../assets/blog/test.jpg"
+has_gallery: false
+---
+
+# The Quiet Work of Design
+
+My design projects have a habit of following me around.
+
+I'm currently working on a home inspired by vernacular architecture. The kind of project that quietly occupies your thoughts long after you've left your desk. You begin noticing references everywhere you go. A wood joint. A pattern in a fabric. An embellishment on a piece of furniture. Everything starts to feel relevant.
+
+---
+
+## Encounter at NGMA
+
+A few days ago, I visited the National Gallery of Modern Art in Bangalore.
+
+As I wandered through the heritage section, the patterns in the restored flooring immediately caught my attention because they echoed some of the ideas I had been exploring for the project.
+
+What first appeared decorative began to feel intentional. Certain patterns marked transitions between spaces, while others framed the artwork around them. The floors carried an extraordinary level of detail and craftsmanship, yet their role within the building felt surprisingly understated. They added rhythm, character, and continuity to the experience without ever competing with the artwork itself.
+
+> *Good design rarely asks for attention.*
+
+The artwork remained the centre of attention, yet the experience of moving through the gallery felt inseparable from the spaces that held it.
+
+---
+
+## The Vocabulary of Atmosphere
+
+Some of the most influential design decisions are experienced long before they are consciously noticed. We register them as comfort, familiarity, ease, rhythm, and atmosphere. 
+
+*   A textured floor beneath bare feet.
+*   The scent of fresh jasmine near an entrance.
+*   The warm glow of a bedside reading light at the end of a long day.
+
+The building itself was never intended to be a museum, yet the rooms found a way to accommodate a new purpose. The flooring, worn in places and softened by time, had done the same.
+
+Decades later, the patterns still felt relevant. The craftsmanship still felt considered. 
+
+> *The floor still belonged.*
+
+---
+
+## The Digital Archive
+
+The gallery visit eventually sent me down a completely different rabbit hole.
+
+What started as noticing a floor ended with a Pinterest board dedicated entirely to flooring ideas from around the world. Some are beautiful. Some are wildly impractical. A few are almost certainly better left on Pinterest than anywhere near a real project.
+
+The board is still growing.
+
+---
+
+### Further Reading
+
+*   **[Borrowed Taste](/blog/borrowed-taste)** — A critical reflection on historical materials, Raja Ravi Verma, and how familiarity masks objective value.
+*   **[What Fontainhas Taught Me About Goa](/blog/what-fontainhas-taught-me-about-goa)** — Discovering how intense material constraints generate timeless vernacular architecture.
+*   **[What I Took Back From the Kochi Biennale](/blog/what-i-took-back-from-the-kochi-biennale)** — A reflection on physical human behavior, circulation paths, and the ways people intuitively claim public spaces.

@@ -1,0 +1,90 @@
+---
+title: "What I Took Back From the Kochi Biennale"
+slug: "what-i-took-back-from-the-kochi-biennale"
+pubDate: 2026-06-16
+author: "Rishika Miranda"
+description: "A chance observation at the Kochi Biennale became a reflection on behaviour, architecture, and the ways people make spaces their own."
+categories: ["reflections"]
+tags: ["kochi-biennale", "architecture", "human-behaviour", "spatial-design"]
+heroImage: "../../assets/blog/test.jpg"
+has_gallery: false
+---
+
+# What I Took Back From the Kochi Biennale
+
+One of my favourite moments from the Kochi Biennale had very little to do with the art itself.
+
+I was walking through one of the exhibition spaces when I noticed a group of children moving through the rooms ahead of me.
+
+They weren't paying much attention to the installations. They weren't stopping to read descriptions. They weren't engaging with the space in the careful, considered way most adults tend to in galleries.
+
+They were simply moving through it.
+
+Running between rooms. Peering through doorways. Turning corners without knowing what was on the other side. Treating the building less like an exhibition and more like something waiting to be explored.
+
+For a while, I assumed they were part of the experience.
+
+The way they moved through the space felt so natural that it seemed intentional.
+
+Then one of them darted through a doorway, and the others followed.
+
+It became obvious they were just children being children.
+
+And somehow that made the moment even more interesting.
+
+---
+
+## Designing for the Unexpected
+
+As architects and designers, we spend a great deal of time thinking about how people might use a space. We draw circulation paths. Consider sightlines. Define programmes. Anticipate behaviour.
+
+Then people arrive.
+
+And they often use spaces in ways we never expected.
+
+> *Architecture begins the conversation. People finish it.*
+
+A staircase becomes a place to sit.
+
+A corridor becomes a meeting point.
+
+An empty corner becomes someone's favourite place in the room.
+
+The buildings themselves don't change.
+
+The experience of them does.
+
+---
+
+## Outside the Script
+
+Watching those children move through the Biennale felt like a reminder of that.
+
+The exhibition had been carefully curated. The architecture had been thoughtfully restored. Every room had a purpose.
+
+Yet some of the most memorable moments were happening outside the script entirely.
+
+> *The most memorable part of the exhibition wasn't hanging on a wall.*
+
+The children weren't interacting with the building as designers intended.
+
+They were interacting with it as people do.
+
+Finding their own routes.  
+Creating their own moments.  
+Assigning their own meaning.
+
+Long after I left the Biennale, that was the image I carried home with me.
+
+Not a particular installation.  
+Not a specific artwork.
+
+Just a group of children moving through a building as though they belonged there.
+
+---
+
+### Further Reading
+
+*   **[What Makes a Home?](/blog/what-makes-a-home)** — Probing the boundary line between raw spatial frameworks and personal, emotional sanctuaries.
+*   **[The Quiet Work of Design](/blog/the-quiet-work-of-design)** — Unpacking the unseen details, heritage artisan struggles, and iterative drawings that define structural execution.
+*   **[Borrowed Taste](/blog/borrowed-taste)** — A reflection on familiarity, cultural identity, and how frames dictate value in modern Indian design.
