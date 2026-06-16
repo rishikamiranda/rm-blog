@@ -38,12 +38,19 @@ const marqueeIcons = [grandPiano, armchairBold, house, mic, plantSolid];
   </section>
 
   <!-- MARQUEE BAND - Full bleed edge-to-edge -->
-  <div class="py-6 overflow-hidden w-full mb-12">
+  <div class="py-16 overflow-hidden w-full mb-12 select-none pointer-events-none">
     <div class="marquee-inner items-center gap-0">
       {Array(6).fill(marqueeIcons).flat().map((icon) => (
-        <div class="flex items-center flex-shrink-0 mx-12 sm:mx-16">
+        <!-- 
+          SPACING ENHANCED: Boosted to mx-48 / sm:mx-64 for sprawling visual breathing room.
+          Initial style set to scale(0.6) to prevent layout snap on initial hydration.
+        -->
+        <div 
+          class="marquee-proximity-target flex items-center flex-shrink-0 mx-48 sm:mx-64 will-change-transform pointer-events-auto"
+          style="transform: scale(0.6);"
+        >
           <div 
-            class="w-8 h-8 sm:w-9 sm:h-9 marquee-icon-mask cursor-pointer"
+            class="w-12 h-12 sm:w-14 sm:h-14 marquee-icon-mask cursor-pointer"
             style={`
               mask: url(${icon.src}) no-repeat center / contain;
               -webkit-mask: url(${icon.src}) no-repeat center / contain;
@@ -55,44 +62,57 @@ const marqueeIcons = [grandPiano, armchairBold, house, mic, plantSolid];
     </div>
   </div>
 
-  <!-- 
-    CRUCIAL: ALL CONTENT SECTIONS BELOW ARE NOW CONTROLLED BY A 
-    NATIVE 'max-w-5xl mx-auto px-8' ARCHITECTURAL CONTAINER FRAME
-  -->
+
 
   <!-- ABOUT SECTION -->
   <section class="max-w-6xl mx-auto px-8 py-16 md:py-24 w-full">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
       
-      <div class="space-y-6 text-sm text-ink leading-relaxed font-mono">
-        <span class="step-line w-8 mb-6"></span>
+      <!-- LEFT COLUMN: Holds the section metadata, headline, and text blocks in a single layout spine -->
+      <div class="md:col-span-7 w-full">
         
-        <p>
-          I’m a Bangalore-based architect and creative lead working across architecture, interiors, storytelling and experiential design. 
-          As a co-founder of Kyrah Design Studio, I lead architectural and interior design projects from concept to execution.
-        </p>
-        <p>
-          Much of my approach to design comes from observing how people experience spaces emotionally through memory, ritual, texture, light, sound and atmosphere, with a strong focus on clarity of thought and craftsmanship.
-        </p>
-        
-        <div class="pt-6">
-          <a href="/about" class="text-xs tracking-widest uppercase text-orange border-b border-orange pb-1 hover:text-ink hover:border-ink transition-colors duration-300 font-bold">
-            Learn More About My Journey →
-          </a>
+        <!-- Section Meta Label -->
+        <div class="mb-6">
+          <span class="step-line w-8 mb-4"></span>
+          <p class="text-xs tracking-widest uppercase text-muted font-bold">The Studio & Creative Lead</p>
+        </div>
+
+        <!-- Section Title: Positioned right above the copy, left-justified -->
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-medium italic text-ink leading-tight mb-8 max-w-xl">
+          Rooted in context, refined by craft.
+        </h2>
+
+        <!-- Narrative Copy Block -->
+        <div class="space-y-6 text-sm text-ink leading-relaxed font-mono">
+          <p>
+            I’m a Bangalore-based architect and creative lead working across architecture, interiors, storytelling and experiential design. 
+            As a co-founder of Kyrah Design Studio, I lead architectural and interior design projects from concept to execution.
+          </p>
+          <p>
+            Much of my approach to design comes from observing how people experience spaces emotionally through memory, ritual, texture, light, sound and atmosphere, with a strong focus on clarity of thought and craftsmanship.
+          </p>
+          
+          <div class="pt-4">
+            <a href="/about" class="text-xs tracking-widest uppercase text-orange border-b border-orange pb-1 hover:text-ink hover:border-ink transition-colors duration-300 font-bold">
+              Learn More About My Journey →
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="w-full">
-        <div class="image-reveal-half w-full aspect-[3/4] overflow-hidden bg-warm border border-warm rounded-sm">
-          <img
-            src={profileImage.src}
-            alt="Rishika Miranda "
-            class="w-full h-full object-cover"
-          />
+      <!-- RIGHT COLUMN: Responsive viewport hiding and borderless frame container -->
+      <!-- FIXED: Changed 'flex' to 'hidden md:flex' to hide on mobile screens -->
+      <div class="hidden md:flex md:col-span-5 justify-end w-full pt-6">
+        <!-- FIXED: Removed 'border border-warm' to drop the outer bounding line -->
+        <div class="p-4 sm:p-6 w-full max-w-[280px] sm:max-w-xs md:max-w-sm bg-transparent">
+          <div class="w-full aspect-[3/4] overflow-hidden bg-warm/30 rounded-2xs border border-stone-200/40 shadow-3xs">
+            <Image
+              src={profileImage}
+              alt="Rishika Miranda editorial portrait"
+              class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-out"
+            />
+          </div>
         </div>
-        <p class="text-[10px] text-muted mt-3 tracking-widest uppercase font-mono">
-          Hover frame to reveal full space &rarr;
-        </p>
       </div>
 
     </div>
@@ -240,3 +260,57 @@ const marqueeIcons = [grandPiano, armchairBold, house, mic, plantSolid];
   </section>
 
 </BaseLayout>
+
+<script>
+    function initMarqueeProximity() {
+      const targets = document.querySelectorAll('.marquee-proximity-target');
+      if (targets.length === 0) return;
+
+      // Define our dramatic scaling limits
+      const MIN_SCALE = 0.6;  // Shrunk down significantly at the edges
+      const MAX_SCALE = 1.8;  // Magnified heavily down the center line
+      const SCALE_RANGE = MAX_SCALE - MIN_SCALE;
+
+      function updateScales() {
+        const screenCenter = window.innerWidth / 2;
+        // Active zone spans 50% of the viewport width
+        const activeRadius = window.innerWidth * 0.50; 
+
+        // 1. Batch read positions to bypass layout thrashing
+        const elementsData = Array.from(targets).map((el) => {
+          const rect = el.getBoundingClientRect();
+          const elementCenter = rect.left + rect.width / 2;
+          return {
+            element: el as HTMLElement,
+            distance: Math.abs(screenCenter - elementCenter)
+          };
+        });
+
+        // 2. Batch apply the parabolic transformations
+        elementsData.forEach(({ element, distance }) => {
+          if (distance < activeRadius) {
+            // Normalized factor: 0 at edge of radius, 1 at exact center
+            const proximity = 1 - distance / activeRadius;
+            
+            // Smooth-step cubic curve for a fluid, organic acceleration curve
+            const smoothProximity = proximity * proximity * (3 - 2 * proximity);
+            
+            // Calculate scale blending from 0.6 up to 1.8
+            const scale = MIN_SCALE + (smoothProximity * SCALE_RANGE);
+            element.style.transform = `scale(${scale})`;
+          } else {
+            // Rest fully at the compressed edge scale outside the active zone
+            element.style.transform = `scale(${MIN_SCALE})`;
+          }
+        });
+
+        requestAnimationFrame(updateScales);
+      }
+
+      requestAnimationFrame(updateScales);
+    }
+
+    // Connect lifecycle hooks for standard loads and Astro view transitions
+    initMarqueeProximity();
+    document.addEventListener('astro:after-swap', initMarqueeProximity);
+  </script>

@@ -20,12 +20,11 @@ const { Content } = await render(post);
   description={post.data.description}
   articleDate={post.data.pubDate.toISOString()}
 >
-  <!-- Main layout container stays open to max-w-6xl for high-end wide elements -->
-  <section class="max-w-6xl mx-auto px-6 sm:px-8 py-16 md:py-24 w-full">
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 w-full">
     <article>
       
-      <!-- HEADER: Centered reading spine (max-w-3xl) -->
-      <header class="max-w-3xl mx-auto mb-12 text-left">
+      <!-- HEADER: Left-justified, perfectly aligned with the max-w-6xl container tracks -->
+      <header class="max-w-6xl mx-auto mb-10 text-left">
         <time
           datetime={post.data.pubDate.toISOString()}
           class="text-xs font-semibold tracking-wider text-stone-400 uppercase"
@@ -40,15 +39,15 @@ const { Content } = await render(post);
         <p class="mt-4 text-xs text-stone-500 italic">By {post.data.author}</p>
       </header>
 
-      <!-- HERO IMAGE: Breaks out wider to max-w-5xl to anchor the page beautifully -->
+      <!-- HERO IMAGE: Standardized to max-w-6xl with zero bottom margin (mb-0) -->
       {
         post.data.heroImage && !post.data.has_gallery && (
-          <div class="max-w-5xl mx-auto mb-14 overflow-hidden rounded-2xl border border-stone-200 shadow-xs">
+          <div class="max-w-6xl mx-auto mb-0 overflow-hidden rounded-t-2xl border border-stone-200/60 border-b-0 shadow-xs">
             <Image
               src={post.data.heroImage}
               alt={`Featured cover artwork for ${post.data.title}`}
-              width={1200}
-              height={675}
+              width={1400}
+              height={788}
               loading="eager"
               class="w-full aspect-video object-cover hover:scale-[1.01] transition-transform duration-500 ease-out"
             />
@@ -56,59 +55,62 @@ const { Content } = await render(post);
         )
       }
 
-      <!-- CORE TEXT CONTENT: Centered text spine upscaled to md:prose-lg -->
-      <div
-        class="prose prose-stone font-sans prose-base md:prose-lg prose-headings:font-display prose-headings:font-bold prose-a:text-stone-900 hover:prose-a:text-stone-600 max-w-3xl mx-auto leading-relaxed text-stone-800"
-      >
-        <Content />
-      </div>
-
-      <!-- MEDIA GALLERY: Breaks out edge-to-edge (max-w-6xl) to match art portfolios -->
-      {
-        post.data.has_gallery &&
-          post.data.galleryImages &&
-          post.data.galleryImages.length > 0 && (
-            <div class="mt-20 border-t border-stone-200 pt-12 w-full">
-              <div class="max-w-3xl mx-auto">
-                <h2 class="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-6">
-                  Project Media Gallery
-                </h2>
-              </div>
-
-              <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-6 -mx-6 px-6 sm:mx-0 sm:px-0">
-                {post.data.galleryImages.map((img, index) => (
-                  <div class="flex-shrink-0 w-[85%] sm:w-[65%] md:w-[55%] aspect-[4/3] snap-start overflow-hidden rounded-xl border border-stone-200 shadow-xs bg-stone-50">
-                    <Image
-                      src={img}
-                      alt={`Gallery artifact documentation index ${index + 1}`}
-                      width={1000}
-                      height={750}
-                      class="w-full h-full object-cover hover:scale-[1.01] transition-transform duration-500 ease-out"
-                    />
-                  </div>
-                ))}
-              </div>
-              <p class="text-[11px] text-stone-400 italic mt-2 text-right">
-                Swipe or scroll horizontally to view images &rarr;
-              </p>
-            </div>
-          )
-      }
-
-      <!-- FOOTER BACK LINK: Snaps right back into alignment with the reading spine -->
-      <div class="max-w-3xl mx-auto mt-20 pt-8 border-t border-stone-100">
-        <a
-          href="/blog"
-          class="group inline-flex items-center gap-2 text-sm font-medium text-stone-500 hover:text-stone-900 transition-colors duration-200"
+      <!-- CONTAINER CANVAS: Fits flush directly underneath the hero image container -->
+      <div class={`max-w-6xl mx-auto bg-white p-8 sm:p-12 md:p-20 shadow-xs border border-stone-200/40 ${post.data.heroImage && !post.data.has_gallery ? 'rounded-b-2xl border-t-0' : 'rounded-2xl'}`}>
+        
+        <!-- CORE PROSE: Clean left-aligned text, upscaled dynamically to prose-lg / md:prose-xl -->
+        <div
+          class="prose prose-stone font-sans prose-lg md:prose-xl prose-headings:font-display prose-headings:font-bold prose-a:text-stone-900 hover:prose-a:text-stone-600 max-w-3xl mx-auto text-left leading-relaxed text-stone-800"
         >
-          <span
-            class="inline-block transition-transform duration-200 ease-out group-hover:-translate-x-1"
+          <Content />
+        </div>
+
+        <!-- PROJECT MEDIA GALLERY -->
+        {
+          post.data.has_gallery &&
+            post.data.galleryImages &&
+            post.data.galleryImages.length > 0 && (
+              <div class="mt-20 border-t border-stone-100 pt-12 w-full">
+                <div class="max-w-3xl mx-auto">
+                  <h2 class="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-6">
+                    Project Media Gallery
+                  </h2>
+                </div>
+
+                <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
+                  {post.data.galleryImages.map((img, index) => (
+                    <div class="flex-shrink-0 w-[90%] sm:w-[75%] md:w-[65%] aspect-[4/3] snap-start overflow-hidden rounded-xl border border-stone-200/60 shadow-2xs bg-stone-50">
+                      <Image
+                        src={img}
+                        alt={`Gallery artifact documentation index ${index + 1}`}
+                        width={1000}
+                        height={750}
+                        class="w-full h-full object-cover hover:scale-[1.01] transition-transform duration-500 ease-out"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <p class="text-[11px] text-stone-400 italic mt-2 text-right">
+                  Swipe or scroll horizontally to view images &rarr;
+                </p>
+              </div>
+            )
+        }
+
+        <!-- FOOTER BACK LINK -->
+        <div class="max-w-3xl mx-auto mt-20 pt-8 border-t border-stone-100">
+          <a
+            href="/blog"
+            class="group inline-flex items-center gap-2 text-sm font-medium text-stone-500 hover:text-stone-900 transition-colors duration-200"
           >
-            &larr;
-          </span>
-          Back to all writing
-        </a>
-      </div>
+            <span class="inline-block transition-transform duration-200 ease-out group-hover:-translate-x-1">
+              &larr;
+            </span>
+            Back to all writing
+          </a>
+        </div>
+
+      </div> <!-- End Container Canvas -->
 
     </article>
   </section>
