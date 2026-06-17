@@ -14,11 +14,11 @@ const posts = (await getCollection("blog")).sort(
   description="A complete chronological collection of published text, spatial reflections, and design philosophies."
 >
   
-  <!-- HERO HEADER SECTION - Mirrored directly from your homepage style -->
+  <!-- HERO HEADER SECTION -->
   <section class="px-8 md:px-16 pt-20 pb-12 md:pt-32 md:pb-16 w-full">
     <div class="max-w-6xl mx-auto">
       <span class="step-line w-12 mb-8"></span>
-      <p class="text-md tracking-widest uppercase text-muted mb-6 font-bold">
+      <p class="text-xs tracking-widest uppercase text-muted mb-6 font-bold">
         Materiality, Ritual & Form
       </p>
       
@@ -26,63 +26,64 @@ const posts = (await getCollection("blog")).sort(
         The archive of<br/>
         <em>quiet thoughts.</em>
       </h1>
-      <p class="text-muted text-md font-mono max-w-lg leading-relaxed">
+      <p class="text-muted text-xs font-mono max-w-sm leading-relaxed">
         A full chronological list of design documentation, architectural reflections, and cultural inquiries.
       </p>
     </div>
   </section>
 
-  <!-- ARCHITECTURAL JOURNAL LIST GRID -->
+  <!-- VISUAL GALLERY GRID -->
   <section class="max-w-6xl mx-auto px-8 py-12 md:py-20 w-full">
-    <div class="space-y-16 md:space-y-24">
+    <!-- 
+      FIXED RESPONSIVE TRACKS: 
+      - grid-cols-1 (Mobile base)
+      - md:grid-cols-2 (Medium screens/Tablets)
+      - lg:grid-cols-3 (Large screens/Desktops)
+    -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 md:gap-y-16">
       {
         posts.map((post) => (
-          <div class="group cursor-pointer relative border-b border-warm/60 pb-16 last:border-0 last:pb-0">
-            <a href={`/blog/${post.data.slug}`} class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+          <div class="group cursor-pointer relative w-full">
+            <a href={`/blog/${post.data.slug}`} class="block w-full space-y-4">
               
-              <!-- Left Column: Image Canvas with custom frame styling -->
-              <div class="md:col-span-5 w-full">
-                <div class="overflow-hidden aspect-[16/10] rounded-sm border border-warm bg-warm shadow-2xs">
-                  <img
-                    src={typeof post.data.heroImage === 'object' ? post.data.heroImage.src : (post.data.heroImage || "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=900&q=80")}
-                    alt={`Cover visual for ${post.data.title}`}
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.015]"
-                  />
-                </div>
+              <!-- Square Image Container -->
+              <div class="overflow-hidden aspect-square w-full rounded-sm border border-warm bg-warm shadow-3xs">
+                <img
+                  src={typeof post.data.heroImage === 'object' ? post.data.heroImage.src : (post.data.heroImage || "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=900&q=80")}
+                  alt={`Cover visual for ${post.data.title}`}
+                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                />
               </div>
 
-              <!-- Right Column: Contextual Typography Spine -->
-              <div class="md:col-span-7 flex flex-col justify-center">
+              <!-- Content Metadata & Typography Block -->
+              <div class="flex flex-col space-y-2 pt-1">
                 
-                <!-- Category, Date & Step-Line Indicator -->
-                <div class="flex items-center gap-4 mb-4">
-                  <span class="step-line w-6 group-hover:w-10 transition-all duration-300"></span>
-                  <div class="text-xs tracking-widest uppercase text-muted font-bold flex items-center gap-2">
-                    <span>{post.data.categories?.[0] || "Reflections"}</span>
-                    <span class="text-warm">&bull;</span>
-                    <time datetime={post.data.pubDate.toISOString()}>
-                      {post.data.pubDate.toLocaleDateString("en-US", {
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </time>
-                  </div>
+                <!-- Category and Date Timeline Details -->
+                <div class="flex items-center gap-2 text-[10px] tracking-widest uppercase text-muted font-bold">
+                  <span>{post.data.categories?.[0] || "Reflections"}</span>
+                  <span class="text-warm">&bull;</span>
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {post.data.pubDate.toLocaleDateString("en-US", {
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </time>
                 </div>
 
-                <!-- Main Post Title with font-display hover mechanics -->
-                <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-medium group-hover:italic text-ink transition-all duration-300 leading-tight mb-4">
+                <!-- Post Title -->
+                <h2 class="font-display text-xl md:text-2xl font-medium tracking-tight text-ink transition-all duration-300 leading-snug group-hover:italic">
                   {post.data.title}
                 </h2>
 
                 <!-- Short Excerpt Description -->
-                <p class="text-xs sm:text-sm text-muted leading-relaxed max-w-xl">
+                <p class="text-xs text-muted leading-relaxed line-clamp-2 font-sans pt-0.5">
                   {post.data.description}
                 </p>
 
-                <!-- Plain Text Inline Read Action -->
-                <div class="pt-6">
-                  <span class="text-[10px] tracking-widest uppercase text-ink font-mono font-bold group-hover:text-orange border-b border-transparent group-hover:border-orange pb-1 transition-all duration-200">
-                    Open Entry &rarr;
+                <!-- Minimal Action Baseline Link -->
+                <div class="pt-2">
+                  <span class="text-[9px] tracking-widest uppercase text-ink font-mono font-bold group-hover:text-orange transition-colors duration-200">
+                    Read Entry &rarr;
                   </span>
                 </div>
 

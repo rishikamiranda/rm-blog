@@ -1,56 +1,125 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
-// 1. Instruct Astro exactly which category routes to build statically
+// 1. Generate path segments dynamically for every unique category found in your frontmatter
 export async function getStaticPaths() {
-  const categories = ['projects', 'events', 'resources'];
+  const allPosts = await getCollection("blog");
   
-  return categories.map((category) => ({
-    params: { category },
-    props: { category },
-  }));
+  // Extract a flattened, unique list of categories across all blog posts
+  const uniqueCategories = [
+    ...new Set(allPosts.flatMap((post) => post.data.categories || [])),
+  ];
+
+  return uniqueCategories.map((category) => {
+    // Filter and sort posts belonging to this specific category loop
+    const filteredPosts = allPosts
+      .filter((post) => post.data.categories?.includes(category))
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+    return {
+      params: { category },
+      props: { posts: filteredPosts },
+    };
+  });
 }
 
-const { category } = Astro.props;
+// 2. Extract parameters and filtered array data passed down from getStaticPaths
+const { category } = Astro.params;
+const { posts } = Astro.props;
 
-// 2. Fetch all entries and filter by the active parameter
-const allPosts = await getCollection('blog');
-const filteredPosts = allPosts
-  .filter((post) => post.data.categories.includes(category as any))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+// Formatting helper to display categories beautifully (e.g., "design-thinking" -> "Design Thinking")
+const displayTitle = category
+  .split("-")
+  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+  .join(" ");
 ---
 
-<BaseLayout title={`${category.charAt(0).toUpperCase() + category.slice(1)} | Rishika Miranda`}>
-  <header class="mb-12">
-    <h1 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl capitalize">
-      {category}
-    </h1>
-    <p class="text-stone-500 mt-2 text-sm">
-      Viewing all articles filed under {category}.
-    </p>
-  </header>
+<BaseLayout
+  title={`${displayTitle} | Curation Archive`}
+  description={`A curated collection of design documentation, notes, and essays focused on ${displayTitle}.`}
+>
+  
+  <!-- HERO HEADER SECTION - Identical to blog layout architecture -->
+  <section class="px-8 md:px-16 pt-20 pb-12 md:pt-32 md:pb-16 w-full">
+    <div class="max-w-6xl mx-auto">
+      <span class="step-line w-12 mb-8"></span>
+      <p class="text-xs tracking-widest uppercase text-muted mb-6 font-bold">
+        Collection Track &bull; {displayTitle}
+      </p>
+      
+      <h1 class="font-display text-5xl sm:text-7xl md:text-8xl leading-none font-medium mb-6 text-ink">
+        Filtered by<br/>
+        <em class="lowercase">{displayTitle}.</em>
+      </h1>
+      <p class="text-muted text-xs font-mono max-w-sm leading-relaxed">
+        A targeted selection of structural entries and deep workflow records filed under the {displayTitle} taxonomy.
+      </p>
+    </div>
+  </section>
 
-  <div class="space-y-10">
-    {filteredPosts.length === 0 ? (
-      <p class="text-sm text-stone-400 italic py-6">No articles published in this archive stream yet.</p>
-    ) : (
-      filteredPosts.map((post) => (
-        <article class="group relative flex flex-col items-start">
-          <h2 class="text-base font-semibold tracking-tight text-stone-900 group-hover:text-stone-600 transition">
-            <a href={`/blog/${post.data.slug}`}>
-              <span class="absolute -inset-x-4 -inset-y-3 z-0 scale-95 bg-stone-100 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 rounded-xl" />
-              <span class="relative z-10">{post.data.title}</span>
+  <!-- IDENTICAL VISUAL GALLERY GRID -->
+  <section class="max-w-6xl mx-auto px-8 py-12 md:py-20 w-full">
+    <!-- 
+      RESPONSIVE GRID TRACKS:
+      - grid-cols-1 (Mobile base view)
+      - md:grid-cols-2 (Medium tablet space)
+      - lg:grid-cols-3 (Large screen portfolio scale)
+    -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 md:gap-y-16">
+      {
+        posts.map((post) => (
+          <div class="group cursor-pointer relative w-full">
+            <a href={`/blog/${post.data.slug}`} class="block w-full space-y-4">
+              
+              <!-- Square Image Container -->
+              <div class="overflow-hidden aspect-square w-full rounded-sm border border-warm bg-warm shadow-3xs">
+                <img
+                  src={typeof post.data.heroImage === 'object' ? post.data.heroImage.src : (post.data.heroImage || "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=900&q=80")}
+                  alt={`Cover visual for ${post.data.title}`}
+                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                />
+              </div>
+
+              <!-- Content Metadata & Typography Block -->
+              <div class="flex flex-col space-y-2 pt-1">
+                
+                <!-- Category and Date Timeline Details -->
+                <div class="flex items-center gap-2 text-[10px] tracking-widest uppercase text-muted font-bold">
+                  <span>{post.data.categories?.[0] || "Reflections"}</span>
+                  <span class="text-warm">&bull;</span>
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {post.data.pubDate.toLocaleDateString("en-US", {
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </time>
+                </div>
+
+                <!-- Post Title -->
+                <h2 class="font-display text-xl md:text-2xl font-medium tracking-tight text-ink transition-all duration-300 leading-snug group-hover:italic">
+                  {post.data.title}
+                </h2>
+
+                <!-- Short Excerpt Description -->
+                <p class="text-xs text-muted leading-relaxed line-clamp-2 font-sans pt-0.5">
+                  {post.data.description}
+                </p>
+
+                <!-- Minimal Action Baseline Link -->
+                <div class="pt-2">
+                  <span class="text-[9px] tracking-widest uppercase text-ink font-mono font-bold group-hover:text-orange transition-colors duration-200">
+                    Read Entry &rarr;
+                  </span>
+                </div>
+
+              </div>
+
             </a>
-          </h2>
-          <time datetime={post.data.pubDate.toISOString()} class="relative z-10 order-first mb-1 flex items-center text-xs text-stone-400 font-medium">
-            {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-          </time>
-          <p class="relative z-10 mt-2 text-sm text-stone-600 line-clamp-2 leading-relaxed">
-            {post.data.description}
-          </p>
-        </article>
-      ))
-    )}
-  </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
 </BaseLayout>
