@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+interface Props {
+  images: { src: ImageMetadata; alt: string }[];
+  cols?: number;
+}
+const { images, cols = 2 } = Astro.props;
+
+const gridCols = cols === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2';
+---
+<div class="my-12 w-full">
+  <div class={`grid grid-cols-1 ${gridCols} gap-4`}>
+    {images.map((img) => (
+      <div class="overflow-hidden rounded-sm border border-warm bg-warm/20 aspect-[4/3]">
+        <Image 
+          src={img.src} 
+          alt={img.alt} 
+          class="w-full h-full object-cover hover:scale-[1.01] transition-transform duration-500 ease-out"
+        />
+      </div>
+    ))}
+  </div>
+</div>

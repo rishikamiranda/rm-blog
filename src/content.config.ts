@@ -3,7 +3,8 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  // FIXED: Expanded glob tracking pattern to fully parse both .md and .mdx formats
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
   
   schema: ({ image }) => z.object({
     title: z.string(),
@@ -13,12 +14,11 @@ const blog = defineCollection({
     author: z.string(),
     tags: z.array(z.string()),
     heroImage: image().optional(),
-    categories: z.array(z.enum(['projects', 'events', 'resources', "reflections"])),
-    
-    // NEW: Structural Gallery Schema Extensions
-    has_gallery: z.boolean().optional().default(false),
-    galleryImages: z.array(image()).optional(),
+    // NEW: Strict constraint validation for descriptive structural image tagging
+    heroImageAlt: z.string().default("Spatial presentation design artifact frame."),
+    categories: z.array(z.enum(['projects', 'roamed', 'resources', "reflections"])),
   }),
 });
 
 export const collections = { blog };
+

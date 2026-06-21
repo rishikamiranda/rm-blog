@@ -1,88 +1,62 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-// 1. Import the optimized Image component
 import { Image } from 'astro:assets';
 
-// 2. Import the physical image file from your assets folder
+// Import the physical portrait asset
 import profileImage from '../assets/rishikamiranda.png';
-
-import grandPiano from '../assets/grand-piano.png';
-import armchairBold from '../assets/armchair-bold.png';
-import house from '../assets/house.png';
-import mic from '../assets/mic.png';
-import plantSolid from '../assets/plant-solid.png';
 
 const allPosts = await getCollection('blog');
 const recentPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
-
-const marqueeIcons = [grandPiano, armchairBold, house, mic, plantSolid];
 ---
 
 <BaseLayout title="Rishika Miranda | Spatial Design, Architecture & Curation">
   
-  <!-- HERO SECTION - Full edge-to-edge impact layout -->
+  <!-- HERO SECTION -->
   <section class="px-8 md:px-16 pt-20 pb-16 md:pt-32 md:pb-24 w-full">
-    <div class="max-w-6xl">
+    <div class="max-w-6xl mx-auto">
       <span class="step-line w-12 mb-8"></span>
-      <p class="text-xs tracking-widest uppercase text-muted mb-6 font-bold">Architecture & Experience Curation</p>
       
-      <h1 class="font-display text-5xl sm:text-7xl md:text-8xl leading-none font-medium mb-10 max-w-4xl text-ink">
-        Chase your<br/>
-        <em>dreams,</em><br/>
-        together.
+      <!-- UPDATED: Context Tag -->
+      <p class="text-xs tracking-widest uppercase text-muted mb-6 font-bold">Architecture and Design</p>
+      
+      <!-- UPDATED: Subtle Philosophy Line -->
+      <h1 class="font-display text-5xl sm:text-7xl md:text-8xl leading-none font-medium mb-8 max-w-5xl text-ink">
+        Making sense <br/>
+        of the world<br/>
+        
       </h1>
+
+      <!-- UPDATED: Coherent, high-end editorial subtext formatting -->
+      <p class="text-muted text-xs font-mono max-w-xl leading-relaxed mt-8">
+        An ongoing collection of observations gathered across buildings, objects, travel, and material culture—documenting the intuitive ways humans live, gather, and create meaning.
+      </p>
     </div>
   </section>
 
-  <!-- MARQUEE BAND - Full bleed edge-to-edge -->
-  <div class="py-16 overflow-hidden w-full mb-12 select-none pointer-events-none">
-    <div class="marquee-inner items-center gap-0">
-      {Array(6).fill(marqueeIcons).flat().map((icon) => (
-        <!-- 
-          SPACING ENHANCED: Boosted to mx-48 / sm:mx-64 for sprawling visual breathing room.
-          Initial style set to scale(0.6) to prevent layout snap on initial hydration.
-        -->
-        <div 
-          class="marquee-proximity-target flex items-center flex-shrink-0 mx-48 sm:mx-64 will-change-transform pointer-events-auto"
-          style="transform: scale(0.6);"
-        >
-          <div 
-            class="w-12 h-12 sm:w-14 sm:h-14 marquee-icon-mask cursor-pointer"
-            style={`
-              mask: url(${icon.src}) no-repeat center / contain;
-              -webkit-mask: url(${icon.src}) no-repeat center / contain;
-            `}
-            role="img"
-          />
-        </div>
-      ))}
-    </div>
+  <!-- Structural Design Line Divider -->
+  <div class="max-w-6xl mx-auto px-8 w-full mb-12">
+    <div class="h-px bg-warm/60 w-full"></div>
   </div>
-
-
 
   <!-- ABOUT SECTION -->
   <section class="max-w-6xl mx-auto px-8 py-16 md:py-24 w-full">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
       
-      <!-- LEFT COLUMN: Holds the section metadata, headline, and text blocks in a single layout spine -->
+      <!-- LEFT COLUMN: Narrative Content Spine -->
       <div class="md:col-span-7 w-full">
         
-        <!-- Section Meta Label -->
         <div class="mb-6">
           <span class="step-line w-8 mb-4"></span>
           <p class="text-xs tracking-widest uppercase text-muted font-bold">The Studio & Creative Lead</p>
         </div>
 
-        <!-- Section Title: Positioned right above the copy, left-justified -->
         <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-medium italic text-ink leading-tight mb-8 max-w-xl">
           Rooted in context, refined by craft.
         </h2>
 
-        <!-- Narrative Copy Block -->
         <div class="space-y-6 text-sm text-ink leading-relaxed font-mono">
           <p>
             I’m a Bangalore-based architect and creative lead working across architecture, interiors, storytelling and experiential design. 
@@ -94,16 +68,14 @@ const marqueeIcons = [grandPiano, armchairBold, house, mic, plantSolid];
           
           <div class="pt-4">
             <a href="/about" class="text-xs tracking-widest uppercase text-orange border-b border-orange pb-1 hover:text-ink hover:border-ink transition-colors duration-300 font-bold">
-              Learn More About My Journey →
+              How I Got Here &rarr;
             </a>
           </div>
         </div>
       </div>
 
-      <!-- RIGHT COLUMN: Responsive viewport hiding and borderless frame container -->
-      <!-- FIXED: Changed 'flex' to 'hidden md:flex' to hide on mobile screens -->
+      <!-- RIGHT COLUMN: Borderless Portrait Window -->
       <div class="hidden md:flex md:col-span-5 justify-end w-full pt-6">
-        <!-- FIXED: Removed 'border border-warm' to drop the outer bounding line -->
         <div class="p-4 sm:p-6 w-full max-w-[280px] sm:max-w-xs md:max-w-sm bg-transparent">
           <div class="w-full aspect-[3/4] overflow-hidden bg-warm/30 rounded-2xs border border-stone-200/40 shadow-3xs">
             <Image
@@ -118,42 +90,40 @@ const marqueeIcons = [grandPiano, armchairBold, house, mic, plantSolid];
     </div>
   </section>
 
-  <!-- HIGHLIGHTS STEP BREAK -->
-  <div class="max-w-6xl mx-auto px-8 flex items-center gap-4 py-2 w-full">
-
-  </div>
-
-  <!-- HOW I CAN HELP SECTION -->
+  <!-- AREAS OF PRACTICE SECTION -->
   <section class="max-w-6xl mx-auto px-8 py-16 md:py-24 w-full">
-    <div class="flex items-start justify-between mb-12 flex-col md:flex-row gap-6">
-      <div>
-        <span class="step-line w-8 mb-6"></span>
-        <p class="text-xs tracking-widest uppercase text-muted font-bold">How I Can Help</p>
-      </div>
-      <h2 class="font-display text-3xl md:text-5xl font-medium italic max-w-md text-ink leading-tight">
-        Your next step starts here.
+    <div class="mb-12 text-left">
+      <span class="step-line w-8 mb-6"></span>
+      <p class="text-xs tracking-widest uppercase text-muted font-bold mb-4">focus</p>
+      <h2 class="font-display text-3xl md:text-5xl font-medium italic text-ink leading-tight">
+        Areas of Practice
       </h2>
     </div>
 
+    <!-- Monolithic Grid Matrix -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-warm border border-warm">
+      
+      <!-- 01. Built Environments -->
       <div class="bg-paper p-8 group transition-colors duration-300 hover:bg-white/50">
         <div class="flex items-center gap-4 mb-6">
           <span class="step-line w-10 group-hover:w-16 transition-all duration-300"></span>
           <span class="text-xs tracking-widest uppercase text-muted font-bold">01</span>
         </div>
-        <h3 class="font-display text-xl font-medium text-ink mb-4">Spatial Architecture</h3>
+        <h3 class="font-display text-xl font-medium text-ink mb-4">Built Environments</h3>
         <p class="text-xs leading-relaxed text-muted">Comprehensive architectural and interior frameworks developed from deep site context, artisanal heritage, and spatial clarity.</p>
       </div>
       
+      <!-- 02. Furniture & Product Design -->
       <div class="bg-paper p-8 group transition-colors duration-300 hover:bg-white/50">
         <div class="flex items-center gap-4 mb-6">
           <span class="step-line w-10 group-hover:w-16 transition-all duration-300"></span>
           <span class="text-xs tracking-widest uppercase text-muted font-bold">02</span>
         </div>
-        <h3 class="font-display text-xl font-medium text-ink mb-4">Furniture & Design</h3>
+        <h3 class="font-display text-xl font-medium text-ink mb-4">Furniture & Product Design</h3>
         <p class="text-xs leading-relaxed text-muted">Intuitively crafted physical items engineered to complement the physical behaviors, textures, and daily spatial rituals of the end user.</p>
       </div>
       
+      <!-- 03. Experience Curation -->
       <div class="bg-paper p-8 group transition-colors duration-300 hover:bg-white/50">
         <div class="flex items-center gap-4 mb-6">
           <span class="step-line w-10 group-hover:w-16 transition-all duration-300"></span>
@@ -165,11 +135,6 @@ const marqueeIcons = [grandPiano, armchairBold, house, mic, plantSolid];
     </div>
   </section>
 
-  <!-- STEP DIVIDER -->
-  <div class="max-w-6xl mx-auto px-8 flex items-center gap-3 py-2 w-full">
-
-  </div>
-
   <!-- JOURNAL WRITING GRID -->
   <section class="max-w-6xl mx-auto px-8 py-16 md:py-24 w-full">
     <div class="flex items-end justify-between mb-12">
@@ -179,7 +144,7 @@ const marqueeIcons = [grandPiano, armchairBold, house, mic, plantSolid];
         <h2 class="font-display text-3xl md:text-4xl font-medium italic text-ink">Recent Writings</h2>
       </div>
       <a href="/blog" class="text-xs tracking-widest uppercase text-muted hover:text-orange transition-colors duration-300 border-b border-muted pb-1 font-bold">
-        All Posts →
+        All Posts &rarr;
       </a>
     </div>
 
@@ -188,6 +153,7 @@ const marqueeIcons = [grandPiano, armchairBold, house, mic, plantSolid];
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
+        <!-- Primary Featured Entry -->
         <div class="md:col-span-2 group cursor-pointer relative">
           <a href={`/blog/${recentPosts[0].data.slug}`} class="block">
             <div class="overflow-hidden aspect-[16/9] mb-5 rounded-sm border border-warm bg-warm">
@@ -203,13 +169,15 @@ const marqueeIcons = [grandPiano, armchairBold, house, mic, plantSolid];
                 {recentPosts[0].data.categories?.[0] || "Reflections"} &bull; Featured Entry
               </span>
             </div>
-            <h3 class="font-display text-2xl md:text-3xl font-medium group-hover:italic transition-all duration-300 mb-2 text-ink">
+            <!-- FIXED: Standard font weight stays constant on hover configurations -->
+            <h3 class="font-display text-2xl md:text-3xl font-medium transition-all duration-300 mb-2 text-ink">
               {recentPosts[0].data.title}
             </h3>
             <p class="text-xs text-muted leading-relaxed max-w-xl">{recentPosts[0].data.description}</p>
           </a>
         </div>
 
+        <!-- Secondary Feed Columns -->
         <div class="flex flex-col gap-8">
           {recentPosts.slice(1, 3).map((post) => (
             <div class="group cursor-pointer relative">
@@ -227,7 +195,8 @@ const marqueeIcons = [grandPiano, armchairBold, house, mic, plantSolid];
                     {post.data.categories?.[0] || "Writing"}
                   </span>
                 </div>
-                <h3 class="font-display text-lg font-medium group-hover:italic transition-all duration-300 text-ink leading-snug">
+                <!-- FIXED: Standard font weight stays constant on hover configurations -->
+                <h3 class="font-display text-lg font-medium transition-all duration-300 text-ink leading-snug">
                   {post.data.title}
                 </h3>
               </a>
@@ -260,57 +229,3 @@ const marqueeIcons = [grandPiano, armchairBold, house, mic, plantSolid];
   </section>
 
 </BaseLayout>
-
-<script>
-    function initMarqueeProximity() {
-      const targets = document.querySelectorAll('.marquee-proximity-target');
-      if (targets.length === 0) return;
-
-      // Define our dramatic scaling limits
-      const MIN_SCALE = 0.6;  // Shrunk down significantly at the edges
-      const MAX_SCALE = 1.8;  // Magnified heavily down the center line
-      const SCALE_RANGE = MAX_SCALE - MIN_SCALE;
-
-      function updateScales() {
-        const screenCenter = window.innerWidth / 2;
-        // Active zone spans 50% of the viewport width
-        const activeRadius = window.innerWidth * 0.50; 
-
-        // 1. Batch read positions to bypass layout thrashing
-        const elementsData = Array.from(targets).map((el) => {
-          const rect = el.getBoundingClientRect();
-          const elementCenter = rect.left + rect.width / 2;
-          return {
-            element: el as HTMLElement,
-            distance: Math.abs(screenCenter - elementCenter)
-          };
-        });
-
-        // 2. Batch apply the parabolic transformations
-        elementsData.forEach(({ element, distance }) => {
-          if (distance < activeRadius) {
-            // Normalized factor: 0 at edge of radius, 1 at exact center
-            const proximity = 1 - distance / activeRadius;
-            
-            // Smooth-step cubic curve for a fluid, organic acceleration curve
-            const smoothProximity = proximity * proximity * (3 - 2 * proximity);
-            
-            // Calculate scale blending from 0.6 up to 1.8
-            const scale = MIN_SCALE + (smoothProximity * SCALE_RANGE);
-            element.style.transform = `scale(${scale})`;
-          } else {
-            // Rest fully at the compressed edge scale outside the active zone
-            element.style.transform = `scale(${MIN_SCALE})`;
-          }
-        });
-
-        requestAnimationFrame(updateScales);
-      }
-
-      requestAnimationFrame(updateScales);
-    }
-
-    // Connect lifecycle hooks for standard loads and Astro view transitions
-    initMarqueeProximity();
-    document.addEventListener('astro:after-swap', initMarqueeProximity);
-  </script>

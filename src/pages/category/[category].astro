@@ -26,13 +26,15 @@ export async function getStaticPaths() {
 
 // 2. Extract parameters and filtered array data passed down from getStaticPaths
 const { category } = Astro.params;
-const { posts } = Astro.props;
+const { posts = [] } = Astro.props;
 
-// Formatting helper to display categories beautifully (e.g., "design-thinking" -> "Design Thinking")
+// SAFE CHECK: Ensure category exists and is defined before running string operations
 const displayTitle = category
-  .split("-")
-  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-  .join(" ");
+  ? category
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ")
+  : "Archive";
 ---
 
 <BaseLayout
@@ -40,35 +42,27 @@ const displayTitle = category
   description={`A curated collection of design documentation, notes, and essays focused on ${displayTitle}.`}
 >
   
-  <!-- HERO HEADER SECTION - Identical to blog layout architecture -->
+  <!-- HERO HEADER SECTION -->
   <section class="px-8 md:px-16 pt-20 pb-12 md:pt-32 md:pb-16 w-full">
     <div class="max-w-6xl mx-auto">
       <span class="step-line w-12 mb-8"></span>
       <p class="text-xs tracking-widest uppercase text-muted mb-6 font-bold">
-        Collection Track &bull; {displayTitle}
+        Collection 
       </p>
       
       <h1 class="font-display text-5xl sm:text-7xl md:text-8xl leading-none font-medium mb-6 text-ink">
-        Filtered by<br/>
-        <em class="lowercase">{displayTitle}.</em>
+        <em class="capitalize">{displayTitle}.</em>
       </h1>
-      <p class="text-muted text-xs font-mono max-w-sm leading-relaxed">
-        A targeted selection of structural entries and deep workflow records filed under the {displayTitle} taxonomy.
-      </p>
+
     </div>
   </section>
 
   <!-- IDENTICAL VISUAL GALLERY GRID -->
   <section class="max-w-6xl mx-auto px-8 py-12 md:py-20 w-full">
-    <!-- 
-      RESPONSIVE GRID TRACKS:
-      - grid-cols-1 (Mobile base view)
-      - md:grid-cols-2 (Medium tablet space)
-      - lg:grid-cols-3 (Large screen portfolio scale)
-    -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 md:gap-y-16">
-      {
-        posts.map((post) => (
+    <!-- CONDITIONAL RENDER CHECK: Render grid only if matching posts exist -->
+    {posts.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 md:gap-y-16">
+        {posts.map((post) => (
           <div class="group cursor-pointer relative w-full">
             <a href={`/blog/${post.data.slug}`} class="block w-full space-y-4">
               
@@ -86,7 +80,8 @@ const displayTitle = category
                 
                 <!-- Category and Date Timeline Details -->
                 <div class="flex items-center gap-2 text-[10px] tracking-widest uppercase text-muted font-bold">
-                  <span>{post.data.categories?.[0] || "Reflections"}</span>
+                  <!-- Render either the currently filtered active category or a fallback -->
+                  <span>{category || post.data.categories?.[0] || "Reflections"}</span>
                   <span class="text-warm">&bull;</span>
                   <time datetime={post.data.pubDate.toISOString()}>
                     {post.data.pubDate.toLocaleDateString("en-US", {
@@ -117,9 +112,16 @@ const displayTitle = category
 
             </a>
           </div>
-        ))
-      }
-    </div>
+        ))}
+      </div>
+    ) : (
+      <!-- Fallback Empty State if category contains no entries -->
+      <div class="text-center py-24 border border-dashed border-warm/60 rounded-sm">
+        <p class="text-xs font-mono text-muted">No entries currently cataloged under this track.</p>
+        <a href="/blog" class="text-xs text-orange underline underline-offset-4 mt-4 inline-block font-mono font-bold">
+          Return to complete writing archive &rarr;
+        </a>
+      </div>
+    )}
   </section>
-
 </BaseLayout>

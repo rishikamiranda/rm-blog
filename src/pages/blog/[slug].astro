@@ -3,6 +3,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
 import { Image } from "astro:assets";
 
+// Import custom MDX components
+import BlogImage from "../../components/BlogImage.astro";
+import BlogGallery from "../../components/BlogGallery.astro";
+
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
   return posts.map((post) => ({
@@ -12,6 +16,8 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+
+// FIXED: Reduced to exactly 1 argument as expected by Astro
 const { Content } = await render(post);
 ---
 
@@ -23,35 +29,44 @@ const { Content } = await render(post);
   <section class="max-w-6xl mx-auto px-8 py-16 md:py-24 w-full">
     <article class="space-y-16">
       
+      <!-- MAIN SPLIT COMPOSITION: 8-Column Content / 4-Column Sticky Image -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start w-full">
         
-        <div class="lg:col-span-8 order-2 lg:order-1">
+        <!-- LEFT COLUMN (8/12): Content Engine Canvas -->
+        <div class="lg:col-span-8 order-2 lg:order-1 group/header">
           
-          <header class="mb-10 text-left border-b border-warm/40 pb-8">
+          <!-- Editorial Header -->
+          <header class="mb-10 text-left border-b border-warm/40 pb-8 relative">
+            <span class="step-line w-6 group-hover/header:w-16 transition-all duration-500 ease-out mb-4"></span>
+            
             <time
               datetime={post.data.pubDate.toISOString()}
-              class="text-[10px] font-bold tracking-widest text-muted uppercase"
+              class="text-[10px] font-bold tracking-widest text-muted uppercase block mt-2"
             >
               {post.data.pubDate.toLocaleDateString("en-US", { dateStyle: "long" })}
             </time>
+            
             <h1 class="font-display mt-4 text-4xl md:text-5xl font-medium tracking-tight text-ink leading-tight">
               {post.data.title}
             </h1>
             <p class="mt-6 text-xs text-muted font-mono italic">By {post.data.author}</p>
           </header>
 
+          <!-- Content Space -->
           <div class="prose prose-stone font-sans prose-lg prose-headings:font-display prose-headings:font-medium prose-a:text-orange hover:prose-a:text-ink max-w-none text-ink leading-relaxed">
-            <Content />
+            <!-- FIXED: Custom MDX components are mapped explicitly right here -->
+            <Content components={{ BlogImage, BlogGallery }} />
           </div>
         </div>
 
+        <!-- RIGHT COLUMN (4/12): Compact Floating Hero Artwork Asset -->
         <div class="lg:col-span-4 order-1 lg:order-2 w-full sticky top-24">
           {
-            post.data.heroImage && !post.data.has_gallery && (
+            post.data.heroImage && (
               <div class="overflow-hidden rounded-sm border border-warm bg-warm/20 shadow-sm w-full">
                 <Image
                   src={post.data.heroImage}
-                  alt={`Featured cover artwork for ${post.data.title}`}
+                  alt={post.data.heroImageAlt}
                   width={500}
                   height={666}
                   loading="eager"
@@ -64,40 +79,17 @@ const { Content } = await render(post);
 
       </div>
 
+      <!-- BASE FOOTER RETREAT ACTION NAVIGATION -->
       <div class="w-full pt-8 border-t border-warm/40">
-        {
-          post.data.has_gallery &&
-            post.data.galleryImages &&
-            post.data.galleryImages.length > 0 && (
-              <div class="w-full">
-                <h2 class="text-[10px] font-bold uppercase tracking-widest text-muted mb-8">
-                  Project Media Gallery
-                </h2>
-
-                <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-8">
-                  {post.data.galleryImages.map((img, index) => (
-                    <div class="flex-shrink-0 w-[80%] sm:w-[60%] md:w-[35%] aspect-[4/3] snap-start overflow-hidden rounded-sm border border-warm/40 bg-warm/20">
-                      <Image
-                        src={img}
-                        alt={`Gallery artifact documentation index ${index + 1}`}
-                        width={800}
-                        height={600}
-                        class="w-full h-full object-cover hover:scale-[1.01] transition-transform duration-500 ease-out"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )
-        }
-
-        <div class="mt-8">
+        <div class="mt-4">
           <a
             href="/blog"
-            class="group inline-flex items-center gap-2 text-[11px] font-bold tracking-widest uppercase text-muted hover:text-ink transition-colors duration-200"
+            class="group inline-flex items-center gap-4 text-[11px] font-bold tracking-widest uppercase text-muted hover:text-ink transition-colors duration-300"
           >
-            <span class="transition-transform duration-200 group-hover:-translate-x-1">&larr;</span>
-            Back to Archive
+            <span class="step-line w-6 group-hover:w-12 transition-all duration-300"></span>
+            <span class="flex items-center gap-2">
+              Back to Archive &rarr;
+            </span>
           </a>
         </div>
       </div>

@@ -27,7 +27,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://rishikam
     
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Geist:wght@100..900&display=swap" rel="stylesheet" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -41,16 +41,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://rishikam
       <nav class="w-full flex items-center justify-between px-8 md:px-16 py-6 border-b border-warm">
         <a 
           href="/" 
-          class="font-display font-medium text-xl tracking-tight text-ink hover:text-orange transition-colors duration-200 italic" 
+          class="font-display font-medium text-xl tracking-tight text-ink hover:text-orange transition-colors duration-200" 
           aria-label="Rishika Miranda Home"
         >
           RishikaMiranda
         </a>
         
         <ul class="flex gap-8 md:gap-10 text-xs tracking-widest uppercase text-muted font-bold">
-          <li><a href="/blog" class="hover:text-ink transition">Journal</a></li>
+          <li><a href="/blog" class="hover:text-ink transition">Reflections</a></li>
           <li><a href="/category/projects" class="hover:text-ink transition">Projects</a></li>
-          <li><a href="/category/events" class="hover:text-ink transition">Events</a></li>
+          <li><a href="/category/roamed" class="hover:text-ink transition">Roamed</a></li>
           <li><a href="/category/resources" class="hover:text-ink transition">Resources</a></li>
           <li><a href="/about" class="hover:text-ink transition">About</a></li>
         </ul>

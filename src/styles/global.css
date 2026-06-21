@@ -10,7 +10,7 @@
   --color-warm: #D4CFC7;
 
   --font-display: "Playfair Display", serif;
-  --font-mono: "Geist Mono", monospace;
+  --font-mono: "Geist", sans-serif;
 }
 
 /* Tactile Grain Overlay Engine */
