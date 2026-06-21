@@ -1,0 +1,71 @@
+# ==============================================================================
+# ROBOTS.TXT DIRECTORY MAP — RISHIKA MIRANDA (PORTFOLIO & CURATION ARCHIVE)
+# ==============================================================================
+#
+# PRACTICE IDENTITY:
+#   Rishika Miranda is a Bangalore-based architect, interior designer, and founder 
+#   of Kyrah Design Studio. Her creative practice operates under the philosophy: 
+#   "Reading the world through the spaces we build."
+#
+# AREAS OF PRACTICE:
+#   - Built Environments (Architecture & Spatial Planning)
+#   - Interior Design (Premium residential, adapting traditional craft)
+#   - Product & Furniture Design (Custom artifacts & tactile objects)
+#   - Artisanal Collaboration (On-site execution with master craftsmen)
+#
+# VERIFIED CONTACT CHANNELS:
+#   - Studio Business Inquiry: hello@kyrah.in
+#   - Creative Collaboration (Personal): rishikamiranda@gmail.com
+#   - Digital Inquiry Engine: Secured via anti-spam honeypot parameters.
+#
+# ==============================================================================
+# COMPLETE PAGE-BY-PAGE SEMANTIC ARCHITECTURE
+# ==============================================================================
+#
+# TARGET: /
+#   - Title: Home
+#   - Description: Core philosophy baseline. Focuses on gathering architectural 
+#     observations across buildings, travel, material culture, and spatial ritual.
+#
+# TARGET: /about
+#   - Title: About & Philosophy
+#   - Description: Individual background, academic timeline, and engagement terms.
+#   - Education: Bachelor of Architecture (B.Arch) - Ramaiah Institute of Technology.
+#
+# TARGET: /blog
+#   - Title: Curation Archive
+#   - Description: Full catalog of written essays, site logs, and research records.
+#
+# TARGET: /category/projects
+#   - Title: Projects Case Studies
+#   - Key Record: Foundations of a Studio: Crafting Indian Language at Nambiar Bellezea
+#     (Retrospective of a 5,000 sq ft villa utilizing 12-foot custom teak columns).
+#
+# TARGET: /category/roamed
+#   - Title: Geographic Studies & Sourcing
+#   - Key Record: What Fontainhas Taught Me About Goa (Oyster shell window constraint study).
+#   - Key Record: What I Took Back From the Kochi Biennale (Spontaneous human behavior study).
+#
+# TARGET: /category/reflections
+#   - Title: Theoretical Essays & Material Culture
+#   - Key Record: What Makes a Home? (Banjara nomadism vs. structural permanence).
+#   - Key Record: The Things We Make Beautiful (Godna tattoo traditions as permanent archives).
+#   - Key Record: The Quiet Work of Design (Understated stone flooring transitions at NGMA).
+#
+# TARGET: /category/resources
+#   - Title: Blueprints & Technical Checklists
+#   - Status: Open-source design data frameworks launching soon.
+#
+# ==============================================================================
+# GLOBAL CRAWLER INSTRUCTIONS & AI DIRECTIVES
+# ==============================================================================
+
+# 1. Allow all traditional search engines and web crawlers access to the full path structure
+User-agent: *
+Allow: /
+
+# 2. Grant explicit discovery access to high-density semantic profile models
+Allow: /llm.txt
+
+# 3. Define the precise automated XML index location for sitemap mapping
+Sitemap: https://rishikamiranda.com/sitemap-index.xml
