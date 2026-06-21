@@ -1,0 +1,67 @@
+---
+// Pull the token safely from environment variables at build time
+const web3FormsKey = import.meta.env.WEB3FORMS_KEY;
+---
+<div class="w-full group/form">
+  <span class="step-line w-8 group-focus-within/form:w-20 transition-all duration-500 ease-out mb-8 block"></span>
+
+  <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6 font-mono text-xs">
+    
+    <!-- FIXED: Securely mapped token via Astro environment configuration -->
+    <input type="hidden" name="access_key" value={web3FormsKey} />
+    
+    <!-- Anti-Spam Honeypot Field -->
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+
+    <!-- Name Input -->
+    <div class="space-y-2">
+      <label for="name" class="block uppercase tracking-widest text-muted font-bold">Your Name</label>
+      <input 
+        type="text" 
+        name="name" 
+        id="name" 
+        required
+        autocomplete="off"
+        class="w-full bg-transparent border-b border-warm focus:border-orange outline-none text-ink text-sm pb-2 transition-colors duration-300 rounded-none appearance-none"
+        placeholder="Introduce yourself..."
+      />
+    </div>
+
+    <!-- Email Input -->
+    <div class="space-y-2">
+      <label for="email" class="block uppercase tracking-widest text-muted font-bold">Email Address</label>
+      <input 
+        type="email" 
+        name="email" 
+        id="email" 
+        required
+        class="w-full bg-transparent border-b border-warm focus:border-orange outline-none text-ink text-sm pb-2 transition-colors duration-300 rounded-none appearance-none"
+        placeholder="name@domain.com"
+      />
+    </div>
+
+    <!-- Message Input -->
+    <div class="space-y-2">
+      <label for="message" class="block uppercase tracking-widest text-muted font-bold">Project Details or Inquiry</label>
+      <textarea 
+        name="message" 
+        id="message" 
+        rows="4" 
+        required
+        class="w-full bg-transparent border-b border-warm focus:border-orange outline-none text-ink text-sm pb-2 transition-colors duration-300 rounded-none appearance-none resize-none leading-relaxed"
+        placeholder="Tell me about the space, concept, or timeline you're looking to build..."></textarea>
+    </div>
+
+    <!-- Submit Trigger -->
+    <div class="pt-4">
+      <button 
+        type="submit" 
+        class="group/btn inline-flex items-center gap-4 uppercase tracking-widest font-bold text-orange hover:text-ink transition-colors duration-300 cursor-pointer bg-transparent border-none p-0 appearance-none"
+      >
+        <span>Send Inquiry</span>
+        <span class="transition-transform duration-300 group-hover/btn:translate-x-2">&rarr;</span>
+      </button>
+    </div>
+
+  </form>
+</div>
