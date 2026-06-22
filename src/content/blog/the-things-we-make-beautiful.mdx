@@ -8,10 +8,15 @@ categories: ["reflections"]
 tags: ["godna", "tattoo-traditions", "material-culture", "cultural-heritage"]
 heroImage: "../../assets/blog/things1.jpg"
 heroImageAlt: "A clean exhibition display of curated personal objects, physical artifacts, and bespoke hardware detailing."
+images:
+  - src: "../../assets/blog/things1.jpg"
+    alt: "A clean exhibition display of curated personal objects, physical artifacts, and bespoke hardware detailing."
+  - src: "../../assets/blog/things2.jpg"
+    alt: "Detailed look at bespoke functional brass objects and handcrafted hardware details."
+  - src: "../../assets/blog/things3.jpg"
+    alt: "Textural flat-lay composition of natural building materials and artisanal tooling patterns."
 ---
-
-import img2 from "../../assets/blog/things2.jpg";
-import img3 from "../../assets/blog/things3.jpg";
+import inlineImg from "../../assets/blog/things2.jpg";
 
 Every morning, I get ready for work and reach for a pair of earrings.
 
@@ -37,12 +42,10 @@ The more I read, the less it felt like a story about tattoos. It felt like a sto
 
 When access to adornment was restricted, adornment found another form. What could not be worn became part of the body itself. What might once have been considered a limitation was transformed into something enduring.
 
-<BlogGallery 
-  images={[
-    { src: img2, alt: "Detailed look at bespoke functional brass objects and handcrafted hardware details." },
-    { src: img3, alt: "Textural flat-lay composition of natural building materials and artisanal tooling patterns." }
-  ]} 
-  cols={2} 
+<BlogImage 
+  src={inlineImg} 
+  alt="Macro display of custom hardware details and metal artifacts." 
+  caption="Bespoke details transforming heavy material constraints into timeless tactile character." 
 />
 
 > *Some forms of beauty are impossible to separate from survival.*

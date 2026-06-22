@@ -7,7 +7,8 @@ interface Props {
 }
 const { src, alt, caption } = Astro.props;
 ---
-<div class="my-10 w-full group">
+<!-- FIXED: Added lg:hidden to prevent layout duplication on desktop screens -->
+<div class="my-10 w-full group lg:hidden">
   <div class="overflow-hidden rounded-sm border border-warm bg-warm/20 w-full">
     <Image 
       src={src} 

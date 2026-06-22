@@ -16,8 +16,6 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-
-// FIXED: Reduced to exactly 1 argument as expected by Astro
 const { Content } = await render(post);
 ---
 
@@ -27,61 +25,62 @@ const { Content } = await render(post);
   articleDate={post.data.pubDate.toISOString()}
 >
   <section class="max-w-6xl mx-auto px-8 py-16 md:py-24 w-full">
-    <article class="space-y-16">
+    <article class="space-y-12">
       
-      <!-- MAIN SPLIT COMPOSITION: 8-Column Content / 4-Column Sticky Image -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start w-full">
+      <!-- 1. FULL WIDTH HEADER BLOCK (Title, Author, Date) -->
+      <header class="text-left border-b border-warm/40 pb-8 relative group/header w-full">
+        <!-- Interactive signature orange line that expands on header element hover states -->
+        <span class="step-line w-6 group-hover/header:w-20 transition-all duration-500 ease-out mb-4"></span>
         
-        <!-- LEFT COLUMN (8/12): Content Engine Canvas -->
-        <div class="lg:col-span-8 order-2 lg:order-1 group/header">
-          
-          <!-- Editorial Header -->
-          <header class="mb-10 text-left border-b border-warm/40 pb-8 relative">
-            <span class="step-line w-6 group-hover/header:w-16 transition-all duration-500 ease-out mb-4"></span>
-            
-            <time
-              datetime={post.data.pubDate.toISOString()}
-              class="text-[10px] font-bold tracking-widest text-muted uppercase block mt-2"
-            >
-              {post.data.pubDate.toLocaleDateString("en-US", { dateStyle: "long" })}
-            </time>
-            
-            <h1 class="font-display mt-4 text-4xl md:text-5xl font-medium tracking-tight text-ink leading-tight">
-              {post.data.title}
-            </h1>
-            <p class="mt-6 text-xs text-muted font-mono italic">By {post.data.author}</p>
-          </header>
+        <time
+          datetime={post.data.pubDate.toISOString()}
+          class="text-[10px] font-bold tracking-widest text-muted uppercase block mt-2"
+        >
+          {post.data.pubDate.toLocaleDateString("en-US", { dateStyle: "long" })}
+        </time>
+        
+        <h1 class="font-display mt-4 text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-ink leading-tight max-w-4xl">
+          {post.data.title}
+        </h1>
+        
+        <p class="mt-6 text-xs text-muted font-mono italic">By {post.data.author}</p>
+      </header>
 
-          <!-- Content Space -->
+      <!-- 2. DUAL COLUMN LAYOUT SYSTEM -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start w-full pt-4">
+        
+        <!-- LEFT COLUMN (8/12): Complete Content Canvas -->
+        <div class="lg:col-span-8 w-full">
           <div class="prose prose-stone font-sans prose-lg prose-headings:font-display prose-headings:font-medium prose-a:text-orange hover:prose-a:text-ink max-w-none text-ink leading-relaxed">
-            <!-- FIXED: Custom MDX components are mapped explicitly right here -->
             <Content components={{ BlogImage, BlogGallery }} />
           </div>
         </div>
 
-        <!-- RIGHT COLUMN (4/12): Compact Floating Hero Artwork Asset -->
-        <div class="lg:col-span-4 order-1 lg:order-2 w-full sticky top-24">
+        <!-- RIGHT COLUMN (4/12): Clean Vertical Gallery Asset Stack (Hidden entirely on mobile viewports) -->
+        <div class="hidden lg:flex lg:col-span-4 flex-col gap-y-8 w-full">
           {
-            post.data.heroImage && (
-              <div class="overflow-hidden rounded-sm border border-warm bg-warm/20 shadow-sm w-full">
-                <Image
-                  src={post.data.heroImage}
-                  alt={post.data.heroImageAlt}
-                  width={500}
-                  height={666}
-                  loading="eager"
-                  class="w-full h-auto object-cover aspect-[3/4] hover:scale-[1.01] transition-transform duration-700 ease-out"
-                />
-              </div>
+            post.data.images && post.data.images.length > 0 && (
+              post.data.images.map((img) => (
+                <div class="overflow-hidden rounded-sm border border-warm bg-warm/20 shadow-3xs w-full group/frame">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    width={500}
+                    height={666}
+                    loading="eager"
+                    class="w-full h-auto object-cover aspect-[3/4] hover:scale-[1.01] transition-transform duration-700 ease-out"
+                  />
+                </div>
+              ))
             )
           }
         </div>
 
       </div>
 
-      <!-- BASE FOOTER RETREAT ACTION NAVIGATION -->
-      <div class="w-full pt-8 border-t border-warm/40">
-        <div class="mt-4">
+      <!-- BASE ACTIONS RETREAT ROW -->
+      <div class="w-full pt-12 border-t border-warm/40">
+        <div class="mt-2">
           <a
             href="/blog"
             class="group inline-flex items-center gap-4 text-[11px] font-bold tracking-widest uppercase text-muted hover:text-ink transition-colors duration-300"
