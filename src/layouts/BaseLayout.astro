@@ -41,7 +41,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://rishikam
       <nav class="w-full flex items-center justify-between px-8 md:px-16 py-6 border-b border-warm sticky top-0 bg-paper/90 backdrop-blur-md z-50">
         <a 
           href="/" 
-          class="font-display font-medium text-xl tracking-tight text-ink hover:text-orange transition-colors duration-200 z-50" 
+          class="font-display font-medium text-xl italic tracking-tight text-ink hover:text-orange transition-colors duration-200 z-50" 
           aria-label="Rishika Miranda Home"
         >
           RishikaMiranda
@@ -75,7 +75,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://rishikam
       <!-- RESPONSIVE MOBILE MENU OVERLAY: Renders drop-down structural tracking list -->
       <div 
         id="mobile-menu-panel" 
-        class="fixed inset-0 bg-paper z-40 hidden flex-col justify-start pt-32 px-8 space-y-8 md:hidden transition-all duration-300 ease-out"
+        class="fixed inset-0 bg-paper z-40 hidden flex-col justify-start pt-10 px-8 space-y-8 md:hidden transition-all duration-300 ease-out"
       >
         <span class="step-line w-8 mb-2"></span>
         <ul class="flex flex-col gap-y-6 text-lg tracking-widest uppercase text-muted font-bold">

@@ -24,7 +24,7 @@ const { Content } = await render(post);
   description={post.data.description}
   articleDate={post.data.pubDate.toISOString()}
 >
-  <section class="max-w-6xl mx-auto px-8 py-16 md:py-24 w-full">
+  <section class="max-w-6xl mx-auto px-8 py-10 md:py-10 w-full">
     <article class="space-y-12">
       
       <!-- 1. FULL WIDTH HEADER BLOCK (Title, Author, Date) -->
@@ -32,18 +32,16 @@ const { Content } = await render(post);
         <!-- Interactive signature orange line that expands on header element hover states -->
         <span class="step-line w-6 group-hover/header:w-20 transition-all duration-500 ease-out mb-4"></span>
         
-        <time
-          datetime={post.data.pubDate.toISOString()}
-          class="text-[10px] font-bold tracking-widest text-muted uppercase block mt-2"
-        >
-          {post.data.pubDate.toLocaleDateString("en-US", { dateStyle: "long" })}
-        </time>
+        
         
         <h1 class="font-display mt-4 text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-ink leading-tight max-w-4xl">
           {post.data.title}
         </h1>
         
-        <p class="mt-6 text-xs text-muted font-mono italic">By {post.data.author}</p>
+        <p class="mt-6 text-xs flex text-muted  font-mono italic">
+          <span>{post.data.pubDate.toLocaleDateString("en-US", { dateStyle: "long" })}</span>
+          <span>By {post.data.author}</span>
+        </p>
       </header>
 
       <!-- 2. DUAL COLUMN LAYOUT SYSTEM -->

@@ -19,19 +19,14 @@ const recentPosts = allPosts
     <div class="max-w-6xl mx-auto">
       <span class="step-line w-12 mb-8"></span>
       
-      <!-- UPDATED: Context Tag -->
-      <p class="text-xs tracking-widest uppercase text-muted mb-6 font-bold">Architecture and Design</p>
-      
       <!-- UPDATED: Subtle Philosophy Line -->
       <h1 class="font-display text-5xl sm:text-7xl md:text-8xl leading-none font-medium mb-8 max-w-5xl text-ink">
-        Architecture is how <br/>
-        I make sense of the world.<br/>
-        
+        Making Sense of the world <br/> through design 
       </h1>
 
       <!-- UPDATED: Coherent, high-end editorial subtext formatting -->
-      <p class="text-muted text-xs font-mono max-w-xl leading-relaxed mt-8">
-        Through buildings, objects, travel, art, craftsmanship and culture, I'm constantly collecting ideas about how people live, gather and create meaning.
+      <p class="text-muted text-sm font-mono max-w-xl leading-relaxed mt-8">
+        Through buildings, objects, travel, art, craftsmanship and culture, I'm constantly collecting ideas about how people live, gather and create meaning. This is where I document them.
       </p>
     </div>
   </section>
@@ -50,21 +45,22 @@ const recentPosts = allPosts
         
         <div class="mb-6">
           <span class="step-line w-8 mb-4"></span>
-          <p class="text-xs tracking-widest uppercase text-muted font-bold">The Studio & Creative Lead</p>
         </div>
 
         <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-medium italic text-ink leading-tight mb-8 max-w-xl">
-          Rooted in context, refined by craft.
+          Hi, I am Rishika
         </h2>
 
         <div class="space-y-6 text-sm text-ink leading-relaxed font-mono">
           <p>
-            I’m a Bangalore-based architect and creative lead working across architecture, interiors, storytelling and experiential design. 
-            As a co-founder of Kyrah Design Studio, I lead architectural and interior design projects from concept to execution.
+          I’m a Bangalore-based architect and creative lead working across architecture, interiors, storytelling and experiential design.
+          Architecture is how I make sense of the world. 
           </p>
           <p>
-            Much of my approach to design comes from observing how people experience spaces emotionally through memory, ritual, texture, light, sound and atmosphere, with a strong focus on clarity of thought and craftsmanship.
-          </p>
+          Over the years, that has led me far beyond buildings. Into interiors, furniture, travel, art, craft, culture and the many ways people shape the spaces around them.
+          Much of my work takes shape through Kyrah Design Studio, while other interests find their way into writing, events, collaborations and the occasional side project.
+          This website is a collection of projects, places and ideas that continue to inform how I think, design and create.
+            </p>
           
           <div class="pt-4">
             <a href="/about" class="text-xs tracking-widest uppercase text-orange border-b border-orange pb-1 hover:text-ink hover:border-ink transition-colors duration-300 font-bold">
@@ -94,8 +90,7 @@ const recentPosts = allPosts
   <section class="max-w-6xl mx-auto px-8 py-16 md:py-24 w-full">
     <div class="mb-12 text-left">
       <span class="step-line w-8 mb-6"></span>
-      <p class="text-xs tracking-widest uppercase text-muted font-bold mb-4">focus</p>
-      <h2 class="font-display text-3xl md:text-5xl font-medium italic text-ink leading-tight">
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-medium italic text-ink leading-tight mb-8 max-w-xl">
         Areas of Practice
       </h2>
     </div>
@@ -140,10 +135,11 @@ const recentPosts = allPosts
     <div class="flex items-end justify-between mb-12">
       <div>
         <span class="step-line w-8 mb-6"></span>
-        <p class="text-xs tracking-widest uppercase text-muted mb-2 font-bold">Posts</p>
-        <h2 class="font-display text-3xl md:text-4xl font-medium italic text-ink">Recent Writings</h2>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-medium italic text-ink leading-tight mb-8 max-w-xl">
+          Recent Writings
+        </h2>
       </div>
-      <a href="/blog" class="text-xs tracking-widest uppercase text-muted hover:text-orange transition-colors duration-300 border-b border-muted pb-1 font-bold">
+      <a href="/blog" class="text-xs tracking-widest uppercase text-orange border-b border-orange pb-1 hover:text-ink hover:border-ink transition-colors duration-300 font-bold">
         All Posts &rarr;
       </a>
     </div>
@@ -162,12 +158,6 @@ const recentPosts = allPosts
                 alt={recentPosts[0].data.title}
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-101"
               />
-            </div>
-            <div class="flex items-center gap-4 mb-3">
-              <span class="step-line w-6"></span>
-              <span class="text-xs tracking-widest uppercase text-muted font-bold">
-                {recentPosts[0].data.categories?.[0] || "Reflections"} &bull; Featured Entry
-              </span>
             </div>
             <!-- FIXED: Standard font weight stays constant on hover configurations -->
             <h3 class="font-display text-2xl md:text-3xl font-medium transition-all duration-300 mb-2 text-ink">
@@ -189,12 +179,6 @@ const recentPosts = allPosts
                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-101"
                   />
                 </div>
-                <div class="flex items-center gap-3 mb-2">
-                  <span class="step-line w-4"></span>
-                  <span class="text-xs tracking-widest uppercase text-muted font-bold">
-                    {post.data.categories?.[0] || "Writing"}
-                  </span>
-                </div>
                 <!-- FIXED: Standard font weight stays constant on hover configurations -->
                 <h3 class="font-display text-lg font-medium transition-all duration-300 text-ink leading-snug">
                   {post.data.title}
@@ -211,19 +195,19 @@ const recentPosts = allPosts
   <!-- CTA COLLABORATION BLOCK -->
   <section class="max-w-6xl mx-auto px-8 py-20 md:py-28 w-full">
     <div class="max-w-2xl">
-      <p class="text-xs tracking-widest uppercase text-muted mb-6 font-bold">Collaborations</p>
-      <h2 class="font-display text-4xl md:text-6xl font-medium leading-none mb-10 text-ink">
-        Ready to take<br/>
-        <em>the leap?</em>
-      </h2>
+      <div>
+        <span class="step-line w-8 mb-6"></span>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-medium italic text-ink leading-tight mb-8 max-w-xl">
+          Get in touch
+        </h2>
+      </div>
       <p class="text-xs text-muted leading-relaxed mb-12 max-w-sm">
-        Whether shaping a custom residential commission, architectural detailing, or exploring experimental media, let's build something with enduring context.
+        I’m always open to new collaborations, projects and conversations. If you’d like to work together, or just want to say hi, feel free to reach out.
       </p>
       <div class="flex items-center gap-6 flex-wrap">
-        <a href="mailto:hello@rishikamiranda.com" class="text-xs tracking-widest uppercase bg-orange text-paper px-8 py-4 hover:bg-ink transition-colors duration-300 font-bold rounded-xs">
+        <a href="mailto:hello@rishikamiranda.com" class="text-xs tracking-widest uppercase bg-orange text-paper px-8 py-4 hover:bg-ink transition-colors duration-300 font-bold rounded-2xl">
           Book a Session
         </a>
-        <span class="step-line w-12"></span>
       </div>
     </div>
   </section>
